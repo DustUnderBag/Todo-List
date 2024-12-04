@@ -28,6 +28,13 @@ class Project {
         if(index > -1) return this.tasks.splice(index, 1).pop(); 
         else alert("task to delete NOT found!");
     }
+
+    migrateTask(task, newProject) {
+        //Remove task from this project object
+        this.deleteTask(task);
+        //Push deleted task to newProject.tasks
+        newProject.tasks.push(task);
+    }
 }
 
 export {Task, Project};
