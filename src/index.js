@@ -14,5 +14,7 @@ const task4 = work.addTask("Drafting", "Draft a new design", "2025-02-15", "Impo
 console.log(home);
 console.log(work);
 
+home.deleteTask(task2);
+
 console.log(home);
 console.log(work);

@@ -20,7 +20,14 @@ class Project {
         return newTask;
     }
 
-
+    deleteTask(task) {
+        console.log(`Deleted Task ${task.title} from Project ${this.title}`);
+        const index = this.tasks.indexOf(task);
+        
+        //return deleted element then convert from array to a single object using pop().
+        if(index > -1) return this.tasks.splice(index, 1).pop(); 
+        else alert("task to delete NOT found!");
+    }
 }
 
 export {Task, Project};
