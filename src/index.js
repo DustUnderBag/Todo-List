@@ -27,8 +27,19 @@ logger(hobbies);
 
 function displayProjects() {
     const projects = document.querySelector('ul.project-window');
-
+    for(const project of Project.projects) {
+        projects.append(listProjectItem(project));
+    }
 }
+
+function listProjectItem(item) {
+    const li = document.createElement('li');
+    li.classList.add("project");
+    li.textContent = item.title;
+    return li;
+}
+
+displayProjects();
 
 function logger(message) {
     console.log(message);
