@@ -8,8 +8,15 @@ class Task {
 }
 
 class Project {
-    tasks = [];
+    static projects = [];
+
+    static addProject(project) {
+        Project.projects.push(project);
+        return project;
+    }
     
+    tasks = [];
+
     constructor(title) {
         this.title = title;
     }

@@ -3,9 +3,9 @@ import {Task, Project} from "./task.js"
 
 console.log("Script entry point working");
 
-const home = new Project("Home");
-const work = new Project("My Work");
-const hobbies = new Project("Hobbies");
+const home = Project.addProject(new Project("Home"));
+const work = Project.addProject(new Project("My Work"));
+const hobbies = Project.addProject(new Project("Hobbies"));
 
 const task1 = home.addTask("House Chores", "Wash Dishes", "Today Afternoon", "Everyday");
 const task2 = home.addTask("Buy Groceries", "Budget $200", "Tomorrow noon", "Every week");
@@ -23,6 +23,12 @@ logger(home);
 logger(work);
 logger(hobbies);
 
+
+
+function displayProjects() {
+    const projects = document.querySelector('ul.project-window');
+
+}
 
 function logger(message) {
     console.log(message);
