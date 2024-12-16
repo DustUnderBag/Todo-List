@@ -27,6 +27,8 @@ logger(hobbies);
 
 function displayProjects() {
     const projects = document.querySelector('ul.project-window');
+    projects.textContent = "";
+
     for(const project of Project.projects) {
         projects.append(listProjectItem(project));
     }
@@ -40,6 +42,15 @@ function listProjectItem(item) {
 }
 
 displayProjects();
+
+const projectBtn = document.querySelector('button.add-project');
+projectBtn.addEventListener('click', e => {
+    e.preventDefault();
+    const title = document.querySelector('input#project-title').value;
+    Project.addProject(new Project(title));
+    console.log(Project.projects);
+    displayProjects();
+});
 
 function logger(message) {
     console.log(message);
