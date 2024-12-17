@@ -1,11 +1,13 @@
 import "./reset.css";
-import {Task, Project} from "./task.js"
+import {Task, Project} from "./task.js";
+import { loadCurrentProject } from "./loadProject.js";
 
 console.log("Script entry point working");
 
 const home = Project.addProject(new Project("Home"));
 const work = Project.addProject(new Project("My Work"));
 const hobbies = Project.addProject(new Project("Hobbies"));
+let loadedProject = home;
 
 const task1 = home.addTask("House Chores", "Wash Dishes", "Today Afternoon", "Everyday");
 const task2 = home.addTask("Buy Groceries", "Budget $200", "Tomorrow noon", "Every week");
@@ -17,12 +19,11 @@ logger(home);
 logger(work);
 logger(hobbies);
 
-home.migrateTask(task1, hobbies);
+//home.migrateTask(task1, hobbies);
 
 logger(home);
 logger(work);
 logger(hobbies);
-
 
 
 function displayProjects() {
@@ -42,6 +43,7 @@ function listProjectItem(item) {
 }
 
 displayProjects();
+loadCurrentProject(loadedProject);
 
 const projectBtn = document.querySelector('button.add-project');
 projectBtn.addEventListener('click', e => {
@@ -55,3 +57,4 @@ projectBtn.addEventListener('click', e => {
 function logger(message) {
     console.log(message);
 }
+
