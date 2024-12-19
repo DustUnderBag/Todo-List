@@ -2,6 +2,8 @@ const content = document.querySelector('div.content');
 const projectTitle = document.querySelector('h1.project-title');
 
 export function loadCurrentProject(project) {
+    content.textContent = "";
+    
     projectTitle.textContent = project.title;
     for(const task of project.tasks) {
         content.append(generateTaskItem(task));
