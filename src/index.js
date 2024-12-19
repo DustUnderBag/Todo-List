@@ -45,6 +45,12 @@ function makeListFromProjects(item) {
 
         li.append(btn);
         project_list.append(li);
+
+        btn.addEventListener('click', e => {
+            e.preventDefault();
+            setCurrentProject(e.target.id);
+            loadCurrentProject(currentProject);
+        });
     }
     
 }
@@ -59,6 +65,11 @@ function newTaskHandler(e) {
     loadCurrentProject(currentProject);
 }
 
+function setCurrentProject(project_name) {
+    currentProject = project_name;
+}
+
 function logger(message) {
     console.log(message);
 }
+

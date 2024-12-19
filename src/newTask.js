@@ -1,3 +1,5 @@
+import { Project } from "./task.js";
+
 export function makeNewTask(project_name) {
     const title = document.querySelector('input#task-title');
     const description = document.querySelector('input#task-description');
