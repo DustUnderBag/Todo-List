@@ -8,7 +8,6 @@ console.log("Script entry point working");
 const home = Project.addProject(new Project("Home"));
 const work = Project.addProject(new Project("My Work"));
 const hobbies = Project.addProject(new Project("Hobbies"));
-let currentProject = home;
 
 const task1 = home.addTask("House Chores", "Wash Dishes", "Today Afternoon", "Everyday");
 const task2 = home.addTask("Buy Groceries", "Budget $200", "Tomorrow noon", "Every week");
@@ -20,30 +19,9 @@ logger(home);
 logger(work);
 logger(hobbies);
 
-//home.migrateTask(task1, hobbies);
+let currentProject = home;
 
-logger(home);
-logger(work);
-logger(hobbies);
-
-
-function displayProjects() {
-    const projects = document.querySelector('ul.project-window');
-    projects.textContent = "";
-
-    for(const project of Project.projects) {
-        projects.append(listProjectItem(project));
-    }
-}
-
-function listProjectItem(item) {
-    const li = document.createElement('li');
-    li.classList.add("project");
-    li.textContent = item.title;
-    return li;
-}
-
-displayProjects();
+makeListFromProjects();
 loadCurrentProject(currentProject);
 
 const projectBtn = document.querySelector('button.add-project');
@@ -51,10 +29,25 @@ projectBtn.addEventListener('click', e => {
     e.preventDefault();
     const title = document.querySelector('input#project-title').value;
     Project.addProject(new Project(title));
-    console.log(Project.projects);
-    displayProjects();
+    makeListFromProjects();
 });
 
+function makeListFromProjects(item) {
+    const project_list = document.querySelector('ul.project-window');
+    project_list.textContent = "";
+    
+    for(const project in Project.projects) {
+        const li = document.createElement('li');
+        const btn = document.createElement('button');
+        btn.classList.add("project");
+        btn.textContent = project;
+        btn.setAttribute('id', project);
+
+        li.append(btn);
+        project_list.append(li);
+    }
+    
+}
 
 const newTask_btn = document.querySelector('button.add-task');
 

@@ -8,10 +8,10 @@ class Task {
 }
 
 class Project {
-    static projects = [];
+    static projects = {};
 
     static addProject(project) {
-        Project.projects.push(project);
+        Project.projects[project.title] = project;
         return project;
     }
     
