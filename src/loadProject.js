@@ -1,11 +1,13 @@
+import { Project } from "./task.js";
+
 const content = document.querySelector('div.content');
 const projectTitle = document.querySelector('h1.project-title');
 
-export function loadCurrentProject(project) {
+export function loadCurrentProject(project_name) {
     content.textContent = "";
     
-    projectTitle.textContent = project.title;
-    for(const task of project.tasks) {
+    projectTitle.textContent = project_name;
+    for(const task of Project.projects[project_name].tasks) {
         content.append(generateTaskItem(task));
     }
 }

@@ -19,7 +19,7 @@ logger(home);
 logger(work);
 logger(hobbies);
 
-let currentProject = home;
+let currentProject = "Home";
 
 makeListFromProjects();
 loadCurrentProject(currentProject);
