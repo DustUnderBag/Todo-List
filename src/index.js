@@ -1,13 +1,14 @@
 import "./reset.css";
-import {Task, Project} from "./task.js";
+import { Project } from "./task.js";
 import { loadCurrentProject } from "./loadProject.js";
+import { makeNewTask } from "./newTask.js";
 
 console.log("Script entry point working");
 
 const home = Project.addProject(new Project("Home"));
 const work = Project.addProject(new Project("My Work"));
 const hobbies = Project.addProject(new Project("Hobbies"));
-let loadedProject = home;
+let currentProject = home;
 
 const task1 = home.addTask("House Chores", "Wash Dishes", "Today Afternoon", "Everyday");
 const task2 = home.addTask("Buy Groceries", "Budget $200", "Tomorrow noon", "Every week");
@@ -43,7 +44,7 @@ function listProjectItem(item) {
 }
 
 displayProjects();
-loadCurrentProject(loadedProject);
+loadCurrentProject(currentProject);
 
 const projectBtn = document.querySelector('button.add-project');
 projectBtn.addEventListener('click', e => {
@@ -54,7 +55,17 @@ projectBtn.addEventListener('click', e => {
     displayProjects();
 });
 
+
+const newTask_btn = document.querySelector('button.add-task');
+
+newTask_btn.addEventListener('click', newTaskHandler);
+
+function newTaskHandler(e) {
+    e.preventDefault();
+    makeNewTask(currentProject);
+    loadCurrentProject(currentProject);
+}
+
 function logger(message) {
     console.log(message);
 }
-
