@@ -19,7 +19,7 @@ let currentProject = "Home";
 
 
 work.migrateTask(task3, home);
-
+console.log(task3);
 
 makeListFromProjects();
 loadCurrentProject(currentProject);
