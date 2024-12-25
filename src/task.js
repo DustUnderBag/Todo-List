@@ -9,11 +9,6 @@ class Task {
     #project; //Store task's location, reference to project.
 
     set project(newProject) {
-        //If new project already has this task, do nothing.
-        if( newProject.tasks.includes(this) ) {
-            alert("Task is already in this project!");
-            return;
-        }
         this.#project = newProject;
     }
 
@@ -57,10 +52,26 @@ class Project {
     }
 
     migrateTask(task, newProject) {
+        //If task isn't in this project, do nothing.
+        if( !this.tasks.includes(task) ) {
+            alert("Task not found in this project!");
+            return;
+        }
+        //If new project already has this task, do nothing.
+        if( newProject.tasks.includes(task) ) {
+            alert("Task is already in this project!");
+            return;
+        }
+
         //Remove task from this project object
         this.deleteTask(task);
+
+        //Change reference to location of task.
+        task.project = newProject;
+
         //Push deleted task to newProject.tasks
         newProject.tasks.push(task);
+        console.log(`Task "${task.title}" migrated to "${newProject.title}"`);
     }
 }
 
