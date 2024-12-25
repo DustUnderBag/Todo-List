@@ -5,6 +5,21 @@ class Task {
         this.dueDate = dueDate;
         this.priority = priority;
     }
+
+    #project; //Store task's location, reference to project.
+
+    set project(newProject) {
+        //If new project already has this task, do nothing.
+        if( newProject.tasks.includes(this) ) {
+            alert("Task is already in this project!");
+            return;
+        }
+        this.#project = newProject;
+    }
+
+    get project() {
+        return this.#project;
+    }
 }
 
 class Project {
@@ -23,6 +38,11 @@ class Project {
 
     addTask(title, description, dueDate, priority) {
         const newTask = new Task(title, description, dueDate, priority);
+
+        //Store location of new task.
+        newTask.project = this; 
+        console.log(`Task "${title}" created at "${newTask.project.title}". `);
+
         this.tasks.push(newTask);
         return newTask;
     }
