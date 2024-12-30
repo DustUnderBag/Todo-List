@@ -1,4 +1,5 @@
 import { Project } from "./task.js";
+import { getFormattedDate } from "./formatDate.js";
 
 const content = document.querySelector('div.content');
 const projectTitle = document.querySelector('h1.project-title');
@@ -32,7 +33,7 @@ function generateTaskItem(task) {
 
     const dueDate = document.createElement('span');
     dueDate.classList.add('task-dueDate');
-    dueDate.textContent = task.dueDate;
+    dueDate.textContent = getFormattedDate(task.dueDate);
     taskWrapper.append(dueDate);
 
     return taskWrapper;

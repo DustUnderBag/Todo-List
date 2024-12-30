@@ -9,11 +9,11 @@ const home = Project.addProject(new Project("Home"));
 const work = Project.addProject(new Project("My Work"));
 const hobbies = Project.addProject(new Project("Hobbies"));
 
-const task1 = home.addTask("House Chores", "Wash Dishes", "Today Afternoon", "Everyday");
-const task2 = home.addTask("Buy Groceries", "Budget $200", "Tomorrow noon", "Every week");
-const task3 = work.addTask("Call Manager", "Call to discuss project", "2024-11-29", "Important");
-const task4 = work.addTask("Drafting", "Draft a new design", "2025-02-15", "Important");
-const task5 = hobbies.addTask("Weight Training", "Upper & Lower Body Split training program", "Every Weekdays", "Not urgent");
+const task1 = home.addTask("House Chores", "Wash Dishes", new Date(2024, 11, 16), "Everyday");
+const task2 = home.addTask("Buy Groceries", "Budget $200", new Date(2025, 0, 12), "Every week");
+const task3 = work.addTask("Call Manager", "Call to discuss project", new Date(2025, 0, 5), "Important");
+const task4 = work.addTask("Drafting", "Draft a new design", new Date(2025, 1, 4), "Important");
+const task5 = hobbies.addTask("Weight Training", "Upper & Lower Body Split training program", new Date(2024, 11,31), "Not urgent");
 
 let currentProject = "Home";
 
