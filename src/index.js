@@ -1,7 +1,8 @@
 import "./reset.css";
 import { Project } from "./task.js";
-import { loadCurrentProject } from "./loadProject.js";
+import { loadCurrentProject, setCurrentProject } from "./loadProject.js";
 import { makeNewTask } from "./newTask.js";
+import { makeTaskForm } from "./taskForm.js";
 
 console.log("Script entry point working");
 
@@ -15,22 +16,22 @@ const task3 = work.addTask("Call Manager", "Call to discuss project", new Date(2
 const task4 = work.addTask("Drafting", "Draft a new design", new Date(2025, 1, 4), "Important");
 const task5 = hobbies.addTask("Weight Training", "Upper & Lower Body Split training program", new Date(2024, 11,31), "Not urgent");
 
-let currentProject = "Home";
-
-
 work.migrateTask(task3, home);
 console.log(task3);
 
 makeListFromProjects();
-loadCurrentProject(currentProject);
+loadCurrentProject();
 
-const projectBtn = document.querySelector('button.add-project');
-projectBtn.addEventListener('click', e => {
+const project_btn = document.querySelector('button.add-project');
+project_btn.addEventListener('click', e => {
     e.preventDefault();
     const title = document.querySelector('input#project-title').value;
     Project.addProject(new Project(title));
     makeListFromProjects();
 });
+
+const taskForm_btn = document.querySelector('button.task-form-button');
+taskForm_btn.addEventListener('click', makeTaskForm);
 
 function makeListFromProjects(item) {
     const project_list = document.querySelector('ul.project-window');
@@ -49,27 +50,8 @@ function makeListFromProjects(item) {
         btn.addEventListener('click', e => {
             e.preventDefault();
             setCurrentProject(e.target.id);
-            loadCurrentProject(currentProject);
+            loadCurrentProject();
         });
     }
     
 }
-
-const newTask_btn = document.querySelector('button.add-task');
-
-newTask_btn.addEventListener('click', newTaskHandler);
-
-function newTaskHandler(e) {
-    e.preventDefault();
-    makeNewTask(currentProject);
-    loadCurrentProject(currentProject);
-}
-
-function setCurrentProject(project_name) {
-    currentProject = project_name;
-}
-
-function logger(message) {
-    console.log(message);
-}
-

@@ -4,13 +4,23 @@ import { getFormattedDate } from "./formatDate.js";
 const content = document.querySelector('div.content');
 const projectTitle = document.querySelector('h1.project-title');
 
-export function loadCurrentProject(project_name) {
+let currentProject = "Home";
+
+export function loadCurrentProject() {
     content.textContent = "";
     
-    projectTitle.textContent = project_name;
-    for(const task of Project.projects[project_name].tasks) {
+    projectTitle.textContent = getCurrentProject();
+    for(const task of Project.projects[getCurrentProject()].tasks) {
         content.append(generateTaskItem(task));
     }
+}
+
+export function getCurrentProject() {
+    return currentProject;
+}
+
+export function setCurrentProject(project_name) {
+    currentProject = project_name;
 }
 
 function generateTaskItem(task) {

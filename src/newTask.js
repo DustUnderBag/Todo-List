@@ -1,11 +1,13 @@
 import { Project } from "./task.js";
 
-export function makeNewTask(project_name) {
+export function makeNewTask() {
     const title = document.querySelector('input#task-title');
     const description = document.querySelector('input#task-description');
     const dueDate = document.querySelector('input#task-dueDate');
     const priority = document.querySelector('select#task-priority');
+    const project = document.querySelector('select#task-project')
 
+    const project_name = project.value;
     const newTask = Project.projects[project_name].addTask(title.value, 
                                            description.value, 
                                            dueDate.value, 
