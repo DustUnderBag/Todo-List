@@ -3,6 +3,9 @@ import { makeNewTask } from "./newTask";
 import { loadCurrentProject, getCurrentProjectTitle } from "./loadProject";
 import { Project } from "./task";
 
+const taskForm_btn = document.querySelector('button.task-form-button');
+const taskForm = document.querySelector('form.task-form');
+
 const priorities = [
     {name: "None", value: ""},
     {name: "Low", value: "0"},
@@ -20,14 +23,13 @@ function projectsToArray() {
 }
 
 export function makeTaskForm() {
-    const form = document.querySelector('.task-form');
-    form.textContent = "";
+    taskForm.textContent = "";
 
-    form.appendChild( makeTextInput("Task title", "task-title", "text") );
-    form.appendChild( makeTextInput("Description", "task-description", "text") );
-    form.appendChild( makeDateInput("Due date", "task-dueDate", "date") );
-    form.appendChild( makeDropdown("Priority", "task-priority", priorities) );
-    form.appendChild( makeDropdown("Project", "task-project", projectsToArray()) );
+    taskForm.appendChild( makeTextInput("Task title", "task-title", "text") );
+    taskForm.appendChild( makeTextInput("Description", "task-description", "text") );
+    taskForm.appendChild( makeDateInput("Due date", "task-dueDate", "date") );
+    taskForm.appendChild( makeDropdown("Priority", "task-priority", priorities) );
+    taskForm.appendChild( makeDropdown("Project", "task-project", projectsToArray()) );
     preSelectProject();
 
     const addTask_btn = document.createElement('button');
@@ -39,8 +41,8 @@ export function makeTaskForm() {
     cancelTask_btn.classList.add('cancel-task');
     cancelTask_btn.textContent = "Cancel";
 
-    form.appendChild(addTask_btn);
-    form.appendChild(cancelTask_btn);    
+    taskForm.appendChild(addTask_btn);
+    taskForm.appendChild(cancelTask_btn);    
 }
 
 function newTaskHandler(e) {
