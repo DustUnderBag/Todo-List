@@ -28,7 +28,7 @@ export function makeTaskForm() {
     form.appendChild( makeDateInput("Due date", "task-dueDate", "date") );
     form.appendChild( makeDropdown("Priority", "task-priority", priorities) );
     form.appendChild( makeDropdown("Project", "task-project", projectsToArray()) );
-    preSelectOptions();
+    preSelectProject();
 
     const addTask_btn = document.createElement('button');
     addTask_btn.classList.add('add-task');

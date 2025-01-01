@@ -10,9 +10,11 @@ function loadCurrentProject() {
     content.textContent = "";
     
     projectTitle.textContent = getCurrentProjectTitle();
-    for(const task of Project.projects[getCurrentProjectTitle()].tasks) {
+    
+    const currentProject = Project.projects[getCurrentProjectTitle()];
+    currentProject.tasks.forEach(task => {
         content.append(generateTaskItem(task));
-    }
+    });
 }
 function getCurrentProjectTitle() {
     return currentProjectTitle;
