@@ -6,7 +6,7 @@ const projectTitle = document.querySelector('h1.project-title');
 
 let currentProjectTitle = "Home";
 
-export function loadCurrentProject() {
+function loadCurrentProject() {
     content.textContent = "";
     
     projectTitle.textContent = getCurrentProjectTitle();
@@ -14,12 +14,11 @@ export function loadCurrentProject() {
         content.append(generateTaskItem(task));
     }
 }
-
-export function getCurrentProjectTitle() {
+function getCurrentProjectTitle() {
     return currentProjectTitle;
 }
 
-export function setCurrentProjectTitle(project_title) {
+function setCurrentProjectTitle(project_title) {
     currentProjectTitle = project_title;
 }
 
@@ -48,3 +47,5 @@ function generateTaskItem(task) {
 
     return taskWrapper;
 }
+
+export { loadCurrentProject, getCurrentProjectTitle, setCurrentProjectTitle };

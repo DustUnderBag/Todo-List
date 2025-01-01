@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { makeNewTask } from "./newTask";
-import { loadCurrentProject } from "./loadProject";
+import { loadCurrentProject, getCurrentProjectTitle } from "./loadProject";
 import { Project } from "./task";
 
 const priorities = [
@@ -10,7 +10,7 @@ const priorities = [
     {name: "High", value: "2"},
 ];
 
-function projectsToOptions() {
+function projectsToArray() {
     const arr = [];
     for(const item in Project.projects) {
         const project_name = Project.projects[item].title;
@@ -27,7 +27,8 @@ export function makeTaskForm() {
     form.appendChild( makeTextInput("Description", "task-description", "text") );
     form.appendChild( makeDateInput("Due date", "task-dueDate", "date") );
     form.appendChild( makeDropdown("Priority", "task-priority", priorities) );
-    form.appendChild( makeDropdown("Project", "task-project", projectsToOptions()) );
+    form.appendChild( makeDropdown("Project", "task-project", projectsToArray()) );
+    preSelectOptions();
 
     const addTask_btn = document.createElement('button');
     addTask_btn.classList.add('add-task');
@@ -97,11 +98,18 @@ function makeDropdown(name, inputId, options_arr) {
         const option = document.createElement('option');
         option.textContent = element.name;
         option.setAttribute('value', element.value);
-        if(element.name === "None" && element.value === "") option.selected = true;
         dropdown.appendChild(option);
     });
 
     wrapper.appendChild(label);
     wrapper.appendChild(dropdown);
     return wrapper;
+}
+
+
+function preSelectProject() {
+    //Pre-select the current project in the select menu.
+    const currentProjectTitle = getCurrentProjectTitle();
+    const currentProject_option = document.querySelector( `option[value='${ currentProjectTitle }']` );
+    currentProject_option.selected = true;
 }
