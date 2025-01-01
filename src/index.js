@@ -1,6 +1,6 @@
 import "./reset.css";
 import { Project } from "./task.js";
-import { loadCurrentProject, setCurrentProject } from "./loadProject.js";
+import { loadCurrentProject, setCurrentProjectTitle } from "./loadProject.js";
 import { makeNewTask } from "./newTask.js";
 import { makeTaskForm } from "./taskForm.js";
 
@@ -49,7 +49,7 @@ function makeListFromProjects(item) {
 
         btn.addEventListener('click', e => {
             e.preventDefault();
-            setCurrentProject(e.target.id);
+            setCurrentProjectTitle(e.target.id);
             loadCurrentProject();
         });
     }
