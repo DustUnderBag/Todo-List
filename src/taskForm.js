@@ -50,7 +50,6 @@ export function makeTaskForm() {
 }
 
 function newTaskHandler(e) {
-    //e.preventDefault();
     makeNewTask();
     loadCurrentProject();
 
@@ -115,6 +114,8 @@ function makeDropdown(name, inputId, options_arr) {
 }
 
 export function preSelectProject() {
+    if( !taskForm.textContent ) return;
+    
     //Pre-select the current project in the select menu.
     const currentProjectTitle = getCurrentProjectTitle();
     const currentProject_option = document.querySelector( `option[value='${ currentProjectTitle }']` );

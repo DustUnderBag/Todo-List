@@ -15,9 +15,6 @@ const task3 = work.addTask("Call Manager", "Call to discuss project", new Date(2
 const task4 = work.addTask("Drafting", "Draft a new design", new Date(2025, 1, 4), "Important");
 const task5 = hobbies.addTask("Weight Training", "Upper & Lower Body Split training program", new Date(2024, 11,31), "Not urgent");
 
-work.migrateTask(task3, home);
-console.log(task3);
-
 makeListFromProjects();
 loadCurrentProject();
 
@@ -26,6 +23,9 @@ project_btn.addEventListener('click', e => {
     const title = document.querySelector('input#project-title').value;
     Project.addProject(new Project(title));
     makeListFromProjects();
+
+    setCurrentProjectTitle(title);
+    loadCurrentProject();
 });
 
 const taskForm_btn = document.querySelector('button.task-form-button');

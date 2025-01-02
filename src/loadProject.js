@@ -24,6 +24,9 @@ export function getCurrentProjectTitle() {
 
 export function setCurrentProjectTitle(project_title) {
     currentProjectTitle = project_title;
+    
+    //Pre-select project location of task form to be the current project.
+    preSelectProject();
 }
 
 function generateTaskItem(task) {
