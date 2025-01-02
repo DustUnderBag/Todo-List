@@ -36,11 +36,13 @@ export function makeTaskForm() {
     const addTask_btn = document.createElement('button');
     addTask_btn.classList.add('add-task');
     addTask_btn.textContent = "Add task";
+    addTask_btn.setAttribute('type', 'button');
     addTask_btn.addEventListener('click', newTaskHandler);
 
     const cancelTask_btn = document.createElement('button');
     cancelTask_btn.classList.add('cancel-task');
     cancelTask_btn.textContent = "Cancel";
+    cancelTask_btn.setAttribute('type', 'button');
     cancelTask_btn.addEventListener('click', closeTaskForm);
 
     taskForm.appendChild(addTask_btn);
@@ -48,7 +50,7 @@ export function makeTaskForm() {
 }
 
 function newTaskHandler(e) {
-    e.preventDefault();
+    //e.preventDefault();
     makeNewTask();
     loadCurrentProject();
 

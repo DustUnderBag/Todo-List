@@ -24,9 +24,6 @@ export function getCurrentProjectTitle() {
 
 export function setCurrentProjectTitle(project_title) {
     currentProjectTitle = project_title;
-    
-    loadCurrentProject(); //
-    preSelectProject();
 }
 
 function generateTaskItem(task) {

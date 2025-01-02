@@ -23,7 +23,6 @@ loadCurrentProject();
 
 const project_btn = document.querySelector('button.add-project');
 project_btn.addEventListener('click', e => {
-    e.preventDefault();
     const title = document.querySelector('input#project-title').value;
     Project.addProject(new Project(title));
     makeListFromProjects();
@@ -42,12 +41,12 @@ function makeListFromProjects(item) {
         btn.classList.add("project");
         btn.textContent = project;
         btn.setAttribute('id', project);
+        btn.setAttribute('type', 'button');
 
         li.append(btn);
         project_list.append(li);
 
         btn.addEventListener('click', e => {
-            e.preventDefault();
             setCurrentProjectTitle(e.target.id);
             loadCurrentProject();
         });
