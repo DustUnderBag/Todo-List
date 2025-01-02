@@ -1,12 +1,13 @@
 import { Project } from "./task.js";
 import { getFormattedDate } from "./formatDate.js";
+import { preSelectProject } from "./taskForm.js";
 
 const content = document.querySelector('div.content');
 const projectTitle = document.querySelector('h1.project-title');
 
 let currentProjectTitle = "Home";
 
-function loadCurrentProject() {
+export function loadCurrentProject() {
     content.textContent = "";
     
     projectTitle.textContent = getCurrentProjectTitle();
@@ -16,12 +17,16 @@ function loadCurrentProject() {
         content.append(generateTaskItem(task));
     });
 }
-function getCurrentProjectTitle() {
+
+export function getCurrentProjectTitle() {
     return currentProjectTitle;
 }
 
-function setCurrentProjectTitle(project_title) {
+export function setCurrentProjectTitle(project_title) {
     currentProjectTitle = project_title;
+    
+    loadCurrentProject(); //
+    preSelectProject();
 }
 
 function generateTaskItem(task) {
@@ -49,5 +54,3 @@ function generateTaskItem(task) {
 
     return taskWrapper;
 }
-
-export { loadCurrentProject, getCurrentProjectTitle, setCurrentProjectTitle };

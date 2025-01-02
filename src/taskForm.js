@@ -23,6 +23,7 @@ function projectsToArray() {
 }
 
 export function makeTaskForm() {
+    taskForm_btn.style.display = "none";
     taskForm.textContent = "";
 
     taskForm.appendChild( makeTextInput("Task title", "task-title", "text") );
@@ -40,6 +41,7 @@ export function makeTaskForm() {
     const cancelTask_btn = document.createElement('button');
     cancelTask_btn.classList.add('cancel-task');
     cancelTask_btn.textContent = "Cancel";
+    cancelTask_btn.addEventListener('click', closeTaskForm);
 
     taskForm.appendChild(addTask_btn);
     taskForm.appendChild(cancelTask_btn);    
@@ -49,6 +51,8 @@ function newTaskHandler(e) {
     e.preventDefault();
     makeNewTask();
     loadCurrentProject();
+
+    closeTaskForm();
 }
 
 function makeTextInput(name, inputId) {
@@ -108,10 +112,14 @@ function makeDropdown(name, inputId, options_arr) {
     return wrapper;
 }
 
-
-function preSelectProject() {
+export function preSelectProject() {
     //Pre-select the current project in the select menu.
     const currentProjectTitle = getCurrentProjectTitle();
     const currentProject_option = document.querySelector( `option[value='${ currentProjectTitle }']` );
     currentProject_option.selected = true;
+}
+
+function closeTaskForm() {
+    taskForm.textContent = "";
+    taskForm_btn.style.display = "block";
 }

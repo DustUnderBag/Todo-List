@@ -1,7 +1,6 @@
 import "./reset.css";
 import { Project } from "./task.js";
 import { loadCurrentProject, setCurrentProjectTitle } from "./loadProject.js";
-import { makeNewTask } from "./newTask.js";
 import { makeTaskForm } from "./taskForm.js";
 
 console.log("Script entry point working");
