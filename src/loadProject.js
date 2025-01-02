@@ -33,9 +33,8 @@ function generateTaskItem(task) {
     const taskWrapper = document.createElement('div');
     taskWrapper.classList.add('task-wrapper');
 
-    const checkbox = document.createElement('button');
-    checkbox.classList.add('task-checkbox');
-    taskWrapper.append(checkbox);
+    const complete_btn = makeCompletedButton(task);
+    taskWrapper.append(complete_btn);
 
     const title = document.createElement('h3');
     title.classList.add('task-title');
@@ -53,4 +52,14 @@ function generateTaskItem(task) {
     taskWrapper.append(dueDate);
 
     return taskWrapper;
+}
+
+function makeCompletedButton(task) {
+    const complete_btn = document.createElement('button');
+    complete_btn.classList.add('task-complete');
+    complete_btn.setAttribute('data-task', task.title);
+    complete_btn.setAttribute('type', 'button');
+    complete_btn.textContent = ".";
+
+    return complete_btn;
 }
