@@ -16,6 +16,19 @@ class Task {
     get project() {
         return this.#project;
     }
+
+    static addTask(title, description, dueDate, priority, project_title) {
+        const newTask = new Task(title, description, dueDate, priority);
+        const project = Project.projects[project_title];
+
+        project.tasks.push(newTask);
+
+        //Store location of new task.
+        newTask.project = project;
+        console.log(`Task "${title}" created at "${newTask.project.title}". `);
+        
+        return newTask;
+    }
 }
 
 class Project {
@@ -30,17 +43,6 @@ class Project {
 
     constructor(title) {
         this.title = title;
-    }
-
-    addTask(title, description, dueDate, priority) {
-        const newTask = new Task(title, description, dueDate, priority);
-
-        //Store location of new task.
-        newTask.project = this;
-        console.log(`Task "${title}" created at "${newTask.project.title}". `);
-
-        this.tasks.push(newTask);
-        return newTask;
     }
 
     deleteTask(task) {
