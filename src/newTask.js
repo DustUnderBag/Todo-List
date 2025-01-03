@@ -5,7 +5,7 @@ export function makeNewTask() {
     const description = document.querySelector('input#task-description');
     const dueDate = document.querySelector('input#task-dueDate');
     const priority = document.querySelector('select#task-priority');
-    const project = document.querySelector('select#task-project')
+    const project = document.querySelector('select#task-project');
 
     const project_name = project.value;
     const newTask = Project.projects[project_name].addTask(title.value, 

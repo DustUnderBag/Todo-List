@@ -36,7 +36,7 @@ class Project {
         const newTask = new Task(title, description, dueDate, priority);
 
         //Store location of new task.
-        newTask.project = this; 
+        newTask.project = this;
         console.log(`Task "${title}" created at "${newTask.project.title}". `);
 
         this.tasks.push(newTask);
