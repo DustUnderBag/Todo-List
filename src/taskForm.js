@@ -7,10 +7,10 @@ const taskForm_btn = document.querySelector('button.task-form-button');
 const taskForm = document.querySelector('form.task-form');
 
 const priorities = [
-    {name: "None", value: ""},
-    {name: "Low", value: "0"},
-    {name: "Medium", value: "1"},
-    {name: "High", value: "2"},
+    {name: "None",   value: 0},
+    {name: "Low",    value: 1},
+    {name: "Medium", value: 2},
+    {name: "High",   value: 3},
 ];
 
 function projectsToArray() {
