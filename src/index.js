@@ -15,6 +15,8 @@ const task3 = Task.addTask("Call Manager", "Call to discuss project", new Date(2
 const task4 = Task.addTask("Drafting", "Draft a new design", new Date(2025, 1, 4), "Important", "My Work");
 const task5 = Task.addTask("Weight Training", "Upper & Lower Body Split training program", new Date(2024, 11,31), "Not urgent", "Hobbies");
 
+Task.deleteTask(task2);
+
 makeListFromProjects();
 loadCurrentProject();
 

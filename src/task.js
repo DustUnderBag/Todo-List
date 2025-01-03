@@ -29,6 +29,16 @@ class Task {
         
         return newTask;
     }
+
+    static deleteTask(task) {
+        console.log(`Deleted Task ${task.title} from Project ${this.title}`);
+        const project = task.project;
+        const index = project.tasks.indexOf(task);
+        
+        //return deleted element then convert from array to a single object using pop().
+        if(index > -1) return project.tasks.splice(index, 1).pop(); 
+        else alert("task to delete NOT found!");
+    }
 }
 
 class Project {
@@ -43,15 +53,6 @@ class Project {
 
     constructor(title) {
         this.title = title;
-    }
-
-    deleteTask(task) {
-        console.log(`Deleted Task ${task.title} from Project ${this.title}`);
-        const index = this.tasks.indexOf(task);
-        
-        //return deleted element then convert from array to a single object using pop().
-        if(index > -1) return this.tasks.splice(index, 1).pop(); 
-        else alert("task to delete NOT found!");
     }
 
     migrateTask(task, newProject) {
