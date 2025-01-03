@@ -39,6 +39,32 @@ class Task {
         if(index > -1) return project.tasks.splice(index, 1).pop(); 
         else alert("task to delete NOT found!");
     }
+
+    static migrateTask(task, new_project_title) {
+        const old_project = task.project;
+        const new_project = Project.projects[new_project_title];
+
+        //If task isn't in old project, do nothing.
+        if( !old_project.tasks.includes(task) ) {
+            alert("Task not found in this project!");
+            return;
+        }
+        //If task already exists in new project, do nothing.
+        if( new_project.tasks.includes(task) ) {
+            alert("Task is already in this project!");
+            return;
+        }
+
+        //Remove task from this project object
+        Task.deleteTask(task);
+
+        //Change reference to location of task.
+        task.project = new_project;
+
+        //Push deleted task to newProject.tasks
+        new_project.tasks.push(task);
+        console.log(`Task "${task.title}" migrated to "${new_project.title}"`);
+    }
 }
 
 class Project {
@@ -53,29 +79,6 @@ class Project {
 
     constructor(title) {
         this.title = title;
-    }
-
-    migrateTask(task, newProject) {
-        //If task isn't in this project, do nothing.
-        if( !this.tasks.includes(task) ) {
-            alert("Task not found in this project!");
-            return;
-        }
-        //If new project already has this task, do nothing.
-        if( newProject.tasks.includes(task) ) {
-            alert("Task is already in this project!");
-            return;
-        }
-
-        //Remove task from this project object
-        this.deleteTask(task);
-
-        //Change reference to location of task.
-        task.project = newProject;
-
-        //Push deleted task to newProject.tasks
-        newProject.tasks.push(task);
-        console.log(`Task "${task.title}" migrated to "${newProject.title}"`);
     }
 }
 
