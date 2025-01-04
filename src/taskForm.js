@@ -4,7 +4,7 @@ import { loadCurrentProject, getCurrentProjectTitle } from "./loadProject";
 import { Project } from "./project";
 
 const taskForm_btn = document.querySelector('button.task-form-button');
-const taskForm = document.querySelector('form.task-form');
+const formWrapper = document.querySelector('.form-wrapper');
 
 const priorities = [
     {name: "None",   value: 0},
@@ -24,14 +24,21 @@ function projectsToArray() {
 
 export function makeTaskForm() {
     taskForm_btn.style.display = "none";
-    taskForm.textContent = "";
+    formWrapper.textContent = "";
+
+    formWrapper.appendChild(taskForm());
+    preSelectProject();
+}
+
+function taskForm() {
+    const taskForm = document.createElement('form');
+    taskForm.classList.add('task-form');
 
     taskForm.appendChild( makeTextInput("Task title", "task-title", "text") );
     taskForm.appendChild( makeTextInput("Description", "task-description", "text") );
     taskForm.appendChild( makeDateInput("Due date", "task-dueDate", "date") );
     taskForm.appendChild( makeDropdown("Priority", "task-priority", priorities) );
     taskForm.appendChild( makeDropdown("Project", "task-project", projectsToArray()) );
-    preSelectProject();
 
     const addTask_btn = document.createElement('button');
     addTask_btn.classList.add('add-task');
@@ -46,7 +53,9 @@ export function makeTaskForm() {
     cancelTask_btn.addEventListener('click', closeTaskForm);
 
     taskForm.appendChild(addTask_btn);
-    taskForm.appendChild(cancelTask_btn);    
+    taskForm.appendChild(cancelTask_btn);
+
+    return taskForm;
 }
 
 function newTaskHandler(e) {
@@ -114,7 +123,7 @@ function makeDropdown(name, inputId, options_arr) {
 }
 
 export function preSelectProject() {
-    if( !taskForm.textContent ) return;
+    if( !formWrapper.textContent ) return;
     
     //Pre-select the current project in the select menu.
     const currentProjectTitle = getCurrentProjectTitle();
@@ -123,6 +132,6 @@ export function preSelectProject() {
 }
 
 function closeTaskForm() {
-    taskForm.textContent = "";
+    formWrapper.textContent = "";
     taskForm_btn.style.display = "block";
 }
