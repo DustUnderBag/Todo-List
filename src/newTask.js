@@ -7,9 +7,11 @@ export function makeNewTask() {
     const priority = document.querySelector('select#task-priority');
     const project = document.querySelector('select#task-project');
 
+    const [year, month, day] = dueDate.value.split("-");
+
     const newTask = Task.addTask(title.value, 
                                  description.value, 
-                                 dueDate.value, 
+                                 new Date(year, month - 1, day), 
                                  priority.value,
                                  project.value);
 
