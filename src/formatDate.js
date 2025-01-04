@@ -1,6 +1,9 @@
-import { differenceInCalendarDays, isThisYear, format } from "date-fns";
+import { differenceInCalendarDays, isThisYear, format, isTomorrow, isToday } from "date-fns";
 
 export function getFormattedDate(date) {
+    if( isToday(date) ) return "Today";
+    if( isTomorrow(date) ) return "Tomorrow";
+
     if( isIn7DaysFromToday(date) ) {
         return toDayInWeek(date);
     }
@@ -13,7 +16,7 @@ function isIn7DaysFromToday(date) {
     const daysDiff = differenceInCalendarDays(date, new Date());
     console.log(`Date ${date} is ${daysDiff} from today`); 
 
-    if(daysDiff <= 7)  return true;
+    if(daysDiff <= 7 && daysDiff > 0)  return true;
        
     return false;
 }
