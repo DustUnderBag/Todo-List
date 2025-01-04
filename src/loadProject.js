@@ -1,4 +1,5 @@
-import { Task, Project } from "./task.js";
+import { Task } from "./task.js";
+import { Project } from "./project.js";
 import { getFormattedDate } from "./formatDate.js";
 import { preSelectProject } from "./taskForm.js";
 

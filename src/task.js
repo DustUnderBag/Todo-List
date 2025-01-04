@@ -1,4 +1,6 @@
-class Task {
+import { Project } from "./project";
+
+export class Task {
     constructor(title, description, dueDate, priority) {
         this.title = title;
         this.description = description;
@@ -75,20 +77,3 @@ class Task {
         console.log(`Task "${task.title}" migrated to "${new_project.title}"`);
     }
 }
-
-class Project {
-    static projects = {};
-
-    static addProject(project) {
-        Project.projects[project.title] = project;
-        return project;
-    }
-    
-    tasks = [];
-
-    constructor(title) {
-        this.title = title;
-    }
-}
-
-export {Task, Project};

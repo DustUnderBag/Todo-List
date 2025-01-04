@@ -1,5 +1,6 @@
 import "./reset.css";
-import { Task, Project } from "./task.js";
+import { Task } from "./task.js";
+import { Project } from "./project.js";
 import { loadCurrentProject, setCurrentProjectTitle } from "./loadProject.js";
 import { makeTaskForm } from "./taskForm.js";
 

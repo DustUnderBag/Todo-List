@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import { makeNewTask } from "./newTask";
 import { loadCurrentProject, getCurrentProjectTitle } from "./loadProject";
-import { Project } from "./task";
+import { Project } from "./project";
 
 const taskForm_btn = document.querySelector('button.task-form-button');
 const taskForm = document.querySelector('form.task-form');
