@@ -40,7 +40,7 @@ class Task {
     }
 
     static deleteTask(task) {
-        console.log(`Deleted Task ${task.title} from Project ${this.title}`);
+        console.log(`Deleted Task "${task.title}" from Project "${task.project.title}"`);
         const project = task.project;
         const index = project.tasks.indexOf(task);
         

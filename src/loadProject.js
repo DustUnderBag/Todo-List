@@ -1,4 +1,4 @@
-import { Project } from "./task.js";
+import { Task, Project } from "./task.js";
 import { getFormattedDate } from "./formatDate.js";
 import { preSelectProject } from "./taskForm.js";
 
@@ -33,7 +33,7 @@ function generateTaskItem(task) {
     const taskWrapper = document.createElement('div');
     taskWrapper.classList.add('task-wrapper');
 
-    const complete_btn = makeCompletedButton(task);
+    const complete_btn = makeCompletedBtn(task);
     taskWrapper.append(complete_btn);
 
     const title = document.createElement('h3');
@@ -54,7 +54,7 @@ function generateTaskItem(task) {
     return taskWrapper;
 }
 
-function makeCompletedButton(task) {
+function makeCompletedBtn(task) {
     const complete_btn = document.createElement('button');
     complete_btn.classList.add('task-complete');
     complete_btn.setAttribute('data-task-uuid', task.uuid);
@@ -62,5 +62,17 @@ function makeCompletedButton(task) {
     complete_btn.setAttribute('type', 'button');
     complete_btn.textContent = ".";
 
+    complete_btn.addEventListener('click', completeBtnHandler);
+
     return complete_btn;
+}
+
+function completeBtnHandler(e) {
+    const uuid = parseInt(this.getAttribute('data-task-uuid'))
+    const project_title = this.getAttribute('data-project-title-ref');
+    const taskFolder = Project.projects[project_title].tasks;
+
+    const task = taskFolder.find( task => task.uuid === uuid);
+    Task.deleteTask(task);
+    loadCurrentProject();
 }
