@@ -57,7 +57,7 @@ function generateTaskItem(task) {
 function makeCompletedButton(task) {
     const complete_btn = document.createElement('button');
     complete_btn.classList.add('task-complete');
-    complete_btn.setAttribute('data-task-title', task.title);
+    complete_btn.setAttribute('data-task-uuid', task.uuid);
     complete_btn.setAttribute('data-project-title-ref', task.project.title);
     complete_btn.setAttribute('type', 'button');
     complete_btn.textContent = ".";

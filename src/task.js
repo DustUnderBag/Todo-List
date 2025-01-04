@@ -8,13 +8,22 @@ class Task {
     }
 
     #project; //Store task's location, reference to project.
-
     set project(newProject) {
         this.#project = newProject;
     }
-
     get project() {
         return this.#project;
+    }
+
+    #uuid = Task.#getUUID();
+    get uuid() {
+        return this.#uuid;
+    }
+    static #sequence_count = 0;
+    static #getUUID() {
+        const new_id = Task.#sequence_count;
+        Task.#sequence_count++;
+        return new_id;
     }
 
     static addTask(title, description, dueDate, priority, project_title) {
