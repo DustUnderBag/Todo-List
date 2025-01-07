@@ -4,7 +4,7 @@ import { loadCurrentProject, getCurrentProjectTitle } from "./loadProject";
 import { Project } from "./project";
 
 const taskForm_btn = document.querySelector('button.task-form-button');
-const formWrapper = document.querySelector('.form-wrapper');
+const taskForm = document.querySelector('form.task-form');
 
 const priorities = [
     {name: "None",   value: 0},
@@ -24,15 +24,7 @@ function projectsToArray() {
 
 export function makeTaskForm() {
     taskForm_btn.style.display = "none";
-    formWrapper.textContent = "";
-
-    formWrapper.appendChild(taskForm());
-    preSelectProject();
-}
-
-function taskForm() {
-    const taskForm = document.createElement('form');
-    taskForm.classList.add('task-form');
+    taskForm.textContent = "";
 
     taskForm.appendChild( makeTextInput("Task title", "task-title", "text") );
     taskForm.appendChild( makeTextInput("Description", "task-description", "text") );
@@ -55,7 +47,8 @@ function taskForm() {
     taskForm.appendChild(addTask_btn);
     taskForm.appendChild(cancelTask_btn);
 
-    return taskForm;
+    
+    preSelectProject();
 }
 
 function newTaskHandler(e) {
@@ -123,7 +116,8 @@ function makeDropdown(name, inputId, options_arr) {
 }
 
 export function preSelectProject() {
-    if( !formWrapper.textContent ) return;
+    //If task form does not exist, don't select anything.
+    if( taskForm.textContent === "" ) return;
     
     //Pre-select the current project in the select menu.
     const currentProjectTitle = getCurrentProjectTitle();
@@ -132,6 +126,6 @@ export function preSelectProject() {
 }
 
 function closeTaskForm() {
-    formWrapper.textContent = "";
+    taskForm.textContent = "";
     taskForm_btn.style.display = "block";
 }

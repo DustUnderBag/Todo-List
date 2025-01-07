@@ -31,7 +31,7 @@ project_btn.addEventListener('click', e => {
 
     //Update and open the task form when task form is already opened,
     //so that the project select menu can auto-select the newly created project.
-    if( document.querySelector('.form-wrapper').textContent ) makeTaskForm();
+    if( document.querySelector('form.task-form').textContent !== "" ) makeTaskForm();
 
     setCurrentProjectTitle(title);
     loadCurrentProject();
