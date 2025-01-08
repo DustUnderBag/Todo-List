@@ -46,7 +46,7 @@ export class Task {
         const project = task.project;
         const index = project.tasks.indexOf(task);
         
-        //return deleted element then convert from array to a single object using pop().
+        //return an array of deleted elements, then return the last element using pop().
         if(index > -1) return project.tasks.splice(index, 1).pop(); 
         else alert("task to delete NOT found!");
     }
