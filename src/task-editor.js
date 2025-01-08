@@ -3,9 +3,6 @@ import { makeNewTask } from "./newTask";
 import { loadCurrentProject, getCurrentProjectTitle } from "./loadProject";
 import { Project } from "./project";
 
-const taskForm_btn = document.querySelector('button.task-form-button');
-const taskForm = document.querySelector('form.task-form');
-
 const priorities = [
     {name: "None",   value: 0},
     {name: "Low",    value: 1},
@@ -22,40 +19,41 @@ function projectsToArray() {
     return arr;
 }
 
-export function makeTaskForm() {
-    taskForm_btn.style.display = "none";
-    taskForm.textContent = "";
+export function makeTaskEditor(task) {
+    const uuid = task.uuid;
 
-    taskForm.appendChild( makeTextInput("Task title", "task-title") );
-    taskForm.appendChild( makeTextInput("Description", "task-description") );
-    taskForm.appendChild( makeDateInput("task-dueDate") );
-    taskForm.appendChild( makeDropdown("Priority", "task-priority", priorities) );
-    taskForm.appendChild( makeDropdown("Project", "task-project", projectsToArray()) );
+    const task_wrapper = document.querySelector(`.task-wrapper[ data-task-uuid="${uuid}" ]`);
+    task_wrapper.textContent = "";
 
-    const addTask_btn = document.createElement('button');
-    addTask_btn.classList.add('add-task');
-    addTask_btn.textContent = "Add task";
-    addTask_btn.setAttribute('type', 'button');
-    addTask_btn.addEventListener('click', newTaskHandler);
+   
+    const editor = document.createElement('form');
+    editor.classList.add('task-editor');
+    editor.setAttribute('data-task-uuid', task.uuid);
+    editor.setAttribute('data-task-projectTitle', task.project.title);
 
-    const cancelTask_btn = document.createElement('button');
-    cancelTask_btn.classList.add('cancel-task');
-    cancelTask_btn.textContent = "Cancel";
-    cancelTask_btn.setAttribute('type', 'button');
-    cancelTask_btn.addEventListener('click', closeTaskForm);
+    editor.append( makeTextInput("Task title", "task-title-edit") );
+    editor.append( makeTextInput("Description", "task-description-edit") );
+    editor.append( makeDateInput("task-dueDate-edit") );
+    editor.append( makeDropdown("Priority", "task-priority-edit", priorities) );
+    editor.append( makeDropdown("Project", "task-project", projectsToArray()) );
 
-    taskForm.appendChild(addTask_btn);
-    taskForm.appendChild(cancelTask_btn);
+    const save_btn = document.createElement('button');
+    save_btn.classList.add('edit-task');
+    save_btn.textContent = "Save";
+    save_btn.setAttribute('type', 'button');
+    save_btn.addEventListener('click', () => true);
 
-    
-    preSelectProject();
-}
+    const cancel_btn = document.createElement('button');
+    cancel_btn.classList.add('cancel-task');
+    cancel_btn.textContent = "Cancel";
+    cancel_btn.setAttribute('type', 'button');
+    cancel_btn.addEventListener('click',  () => true);
 
-function newTaskHandler(e) {
-    makeNewTask();
-    loadCurrentProject();
+    editor.append(save_btn);
+    editor.append(cancel_btn);
 
-    closeTaskForm();
+    task_wrapper.append(editor);
+  
 }
 
 function makeTextInput(name, inputId) {
@@ -113,19 +111,4 @@ function makeDropdown(name, inputId, options_arr) {
     wrapper.appendChild(label);
     wrapper.appendChild(dropdown);
     return wrapper;
-}
-
-export function preSelectProject() {
-    //If task form does not exist, don't select anything.
-    if( taskForm.textContent === "" ) return;
-    
-    //Pre-select the current project in the select menu.
-    const currentProjectTitle = getCurrentProjectTitle();
-    const currentProject_option = document.querySelector( `option[value='${ currentProjectTitle }']` );
-    currentProject_option.selected = true;
-}
-
-function closeTaskForm() {
-    taskForm.textContent = "";
-    taskForm_btn.style.display = "block";
 }

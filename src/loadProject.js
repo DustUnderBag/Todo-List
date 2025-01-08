@@ -2,6 +2,7 @@ import { Task } from "./task.js";
 import { Project } from "./project.js";
 import { getFormattedDate } from "./formatDate.js";
 import { preSelectProject } from "./taskForm.js";
+import { makeTaskEditor } from "./task-editor.js";
 
 const content = document.querySelector('div.content');
 const projectTitle = document.querySelector('h1.project-title');
@@ -63,7 +64,7 @@ function makeCompletedBtn(task) {
     const complete_btn = document.createElement('button');
     complete_btn.classList.add('task-complete');
     complete_btn.setAttribute('data-task-uuid', task.uuid);
-    complete_btn.setAttribute('data-project-title-ref', task.project.title);
+    complete_btn.setAttribute('data-task-projectTitle', task.project.title);
     complete_btn.setAttribute('type', 'button');
     complete_btn.textContent = "complete";
 
@@ -74,7 +75,7 @@ function makeCompletedBtn(task) {
 
 function completeBtnHandler(e) {
     const uuid = parseInt(this.getAttribute('data-task-uuid'))
-    const project_title = this.getAttribute('data-project-title-ref');
+    const project_title = this.getAttribute('data-task-projectTitle');
     const taskFolder = Project.projects[project_title].tasks;
 
     const task = taskFolder.find( task => task.uuid === uuid);
@@ -87,7 +88,7 @@ function makeEditBtn(task) {
     const edit_btn = document.createElement('button');
     edit_btn.classList.add('task-edit');
     edit_btn.setAttribute('data-task-uuid', task.uuid);
-    edit_btn.setAttribute('data-project-title-ref', task.project.title);
+    edit_btn.setAttribute('data-task-projectTitle', task.project.title);
     edit_btn.setAttribute('type', 'button');
     edit_btn.textContent = "Edit";
 
@@ -98,11 +99,11 @@ function makeEditBtn(task) {
 
 function editBtnHandler(e) {
     const uuid = parseInt(this.getAttribute('data-task-uuid'));
-    const project_title = this.getAttribute('data-project-title-ref');
+    const project_title = this.getAttribute('data-task-projectTitle');
     const taskFolder = Project.projects[project_title].tasks;
 
     const task = taskFolder.find( task => task.uuid === uuid);
-    //makeTaskEditor(task);
     
     loadCurrentProject();
+    makeTaskEditor(task);
 }
