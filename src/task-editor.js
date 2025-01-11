@@ -24,7 +24,6 @@ export function makeTaskEditor(task) {
 
     const task_wrapper = document.querySelector(`.task-wrapper[ data-task-uuid="${uuid}" ]`);
     task_wrapper.textContent = "";
-
    
     const editor = document.createElement('form');
     editor.classList.add('task-editor');
@@ -35,7 +34,7 @@ export function makeTaskEditor(task) {
     editor.append( makeTextInput("Description", "task-description-edit") );
     editor.append( makeDateInput("task-dueDate-edit") );
     editor.append( makeDropdown("Priority", "task-priority-edit", priorities) );
-    editor.append( makeDropdown("Project", "task-project", projectsToArray()) );
+    editor.append( makeDropdown("Project", "task-project-edit", projectsToArray()) );
 
     const save_btn = document.createElement('button');
     save_btn.classList.add('edit-task');
@@ -53,7 +52,26 @@ export function makeTaskEditor(task) {
     editor.append(cancel_btn);
 
     task_wrapper.append(editor);
+
+    prefill(task);
   
+}
+
+function prefill(task) {
+    document.querySelector('#task-title-edit').value = task.title
+    document.querySelector('#task-description-edit').value = task.description;
+
+    //Pre-fill Due Date.
+    //task.dueDate is a Date instance, convert its format to 'year - month - day';
+    const formatted_dueDate = format(task.dueDate, 'yyyy-MM-dd'); 
+    document.querySelector('#task-dueDate-edit').value = formatted_dueDate;
+
+    //Pre-fill priority.
+    document.querySelector(`#task-priority-edit > option[value="${task.priority}"]`).selected = true;
+
+    //Pre-fill project.
+    document.querySelector(`#task-project-edit > option[value="${task.project.title}"]`).selected = true;
+
 }
 
 function makeTextInput(name, inputId) {
@@ -81,7 +99,6 @@ function makeDateInput(inputId) {
     input.setAttribute('name', inputId);
     
     const today = format( new Date(), 'yyyy-MM-dd' );
-    input.value = today;
     input.setAttribute('min', today);
 
     wrapper.append(input);
