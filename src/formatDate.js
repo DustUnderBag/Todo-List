@@ -14,7 +14,6 @@ export function getFormattedDate(date) {
 
 function isIn7DaysFromToday(date) {
     const daysDiff = differenceInCalendarDays(date, new Date());
-    console.log(`Date ${date} is ${daysDiff} from today`); 
 
     if(daysDiff <= 7 && daysDiff > 0)  return true;
        

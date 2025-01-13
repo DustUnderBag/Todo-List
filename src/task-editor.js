@@ -2,6 +2,27 @@ import { format } from "date-fns";
 import { makeNewTask } from "./newTask";
 import { loadCurrentProject, getCurrentProjectTitle } from "./loadProject";
 import { Project } from "./project";
+import { Task } from "./task";
+
+//Search for all editor's inputs at once, returned in an object.
+const cache_editorInputs = () => {
+    const title_edit = document.querySelector('#task-title-edit');
+    const description_edit = document.querySelector('#task-description-edit');
+    const dueDate_edit = document.querySelector('#task-dueDate-edit');
+
+    const priority_edit = document.querySelector('#task-priority-edit > option:checked');
+
+    const project_edit = document.querySelector('#task-project-edit > option:checked');
+
+    return {
+        title_edit,
+        description_edit,
+        dueDate_edit,
+
+        priority_edit,
+        project_edit,
+    }
+}
 
 const priorities = [
     {name: "None",   value: 0},
@@ -20,6 +41,7 @@ function projectsToArray() {
 }
 
 export function makeTaskEditor(task) {
+    console.log(task);
     const uuid = task.uuid;
 
     const task_wrapper = document.querySelector(`.task-wrapper[ data-task-uuid="${uuid}" ]`);
@@ -37,16 +59,19 @@ export function makeTaskEditor(task) {
     editor.append( makeDropdown("Project", "task-project-edit", projectsToArray()) );
 
     const save_btn = document.createElement('button');
-    save_btn.classList.add('edit-task');
+    save_btn.classList.add('save-task');
     save_btn.textContent = "Save";
     save_btn.setAttribute('type', 'button');
-    save_btn.addEventListener('click', () => true);
+    save_btn.addEventListener('click', (e) => {
+        saveTaskChanges(task);
+        loadCurrentProject();
+    });
 
     const cancel_btn = document.createElement('button');
     cancel_btn.classList.add('cancel-task');
     cancel_btn.textContent = "Cancel";
     cancel_btn.setAttribute('type', 'button');
-    cancel_btn.addEventListener('click',  () => true);
+    cancel_btn.addEventListener('click',  loadCurrentProject);
 
     editor.append(save_btn);
     editor.append(cancel_btn);
@@ -54,7 +79,6 @@ export function makeTaskEditor(task) {
     task_wrapper.append(editor);
 
     prefill(task);
-  
 }
 
 function prefill(task) {
@@ -128,4 +152,28 @@ function makeDropdown(name, inputId, options_arr) {
     wrapper.appendChild(label);
     wrapper.appendChild(dropdown);
     return wrapper;
+}
+
+
+function saveTaskChanges(task) {
+    const inputs = cache_editorInputs();
+
+    const new_title = inputs.title_edit.value;
+    const new_description = inputs.description_edit.value;
+
+    const [year, month, day] = inputs.dueDate_edit.value.split('-');
+    const new_dueDate =  new Date(year, month - 1, day);
+    
+    const new_priority = inputs.priority_edit.value;
+    const new_projectTitle = inputs.project_edit.value;
+
+    task.title = new_title;
+    task.description = new_description;
+    task.dueDate = new_dueDate;
+    task.priority = new_priority;
+    
+    if(task.project.title !== new_projectTitle) {
+        Task.migrateTask(task, new_projectTitle);
+        console.log("task migrated");
+    }
 }
