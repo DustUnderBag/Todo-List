@@ -1,4 +1,4 @@
-import { Project } from "./project";
+import { Project, parseProjectsFromLocalStorage, updateProjectsInLocalStorage } from "./project";
 
 export class Task {
     constructor(title, description, dueDate, priority) {
@@ -9,14 +9,8 @@ export class Task {
         this.completed = false;
     }
 
-    #project; //Store task's location, reference to project.
-    set project(newProject) {
-        this.#project = newProject;
-    }
-    get project() {
-        return this.#project;
-    }
-
+    projectTitle;
+    
     #uuid = Task.#getUUID();
     get uuid() {
         return this.#uuid;
@@ -29,15 +23,18 @@ export class Task {
     }
 
     static addTask(title, description, dueDate, priority, project_title) {
-        const newTask = new Task(title, description, dueDate, priority);
-        const project = Project.projects[project_title];
+        const projects = parseProjectsFromLocalStorage();
 
-        project.tasks.push(newTask);
+        const newTask = new Task(title, description, dueDate, priority);
 
         //Store location of new task.
-        newTask.project = project;
-        console.log(`Task "${title}" created at "${newTask.project.title}". `);
-        
+        newTask.projectTitle = project_title;
+        console.log(`Task "${title}" created at "${newTask.projectTitle}". `);
+
+        projects[newTask.projectTitle].tasks.push(newTask);
+
+        updateProjectsInLocalStorage(projects);
+
         return newTask;
     }
 

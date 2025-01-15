@@ -1,5 +1,4 @@
 import { format } from "date-fns";
-import { makeNewTask } from "./newTask";
 import { loadCurrentProject, getCurrentProjectTitle } from "./loadProject";
 import { Project } from "./project";
 import { Task } from "./task";
@@ -50,7 +49,7 @@ export function makeTaskEditor(task) {
     const editor = document.createElement('form');
     editor.classList.add('task-editor');
     editor.setAttribute('data-task-uuid', task.uuid);
-    editor.setAttribute('data-task-projectTitle', task.project.title);
+    editor.setAttribute('data-task-projectTitle', task.projectTitle);
 
     editor.append( makeTextInput("Task title", "task-title-edit") );
     editor.append( makeTextInput("Description", "task-description-edit") );
@@ -94,7 +93,7 @@ function prefill(task) {
     document.querySelector(`#task-priority-edit > option[value="${task.priority}"]`).selected = true;
 
     //Pre-fill project.
-    document.querySelector(`#task-project-edit > option[value="${task.project.title}"]`).selected = true;
+    document.querySelector(`#task-project-edit > option[value="${task.projectTitle}"]`).selected = true;
 
 }
 
@@ -172,7 +171,7 @@ function saveTaskChanges(task) {
     task.dueDate = new_dueDate;
     task.priority = new_priority;
     
-    if(task.project.title !== new_projectTitle) {
+    if(task.projectTitle !== new_projectTitle) {
         Task.migrateTask(task, new_projectTitle);
         console.log("task migrated");
     }

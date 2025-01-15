@@ -6,7 +6,6 @@ import { makeTaskForm } from "./taskForm.js";
 
 console.log("Script entry point working");
 localStorage.clear();
-console.log(Project.projects);
 
 const home = Project.addProject(new Project("Home"));
 const work = Project.addProject(new Project("My Work"));

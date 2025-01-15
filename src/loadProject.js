@@ -64,7 +64,7 @@ function makeCompletedBtn(task) {
     const complete_btn = document.createElement('button');
     complete_btn.classList.add('task-complete');
     complete_btn.setAttribute('data-task-uuid', task.uuid);
-    complete_btn.setAttribute('data-task-projectTitle', task.project.title);
+    complete_btn.setAttribute('data-task-projectTitle', task.projectTitle);
     complete_btn.setAttribute('type', 'button');
     complete_btn.textContent = "complete";
 
@@ -88,7 +88,7 @@ function makeEditBtn(task) {
     const edit_btn = document.createElement('button');
     edit_btn.classList.add('task-edit');
     edit_btn.setAttribute('data-task-uuid', task.uuid);
-    edit_btn.setAttribute('data-task-projectTitle', task.project.title);
+    edit_btn.setAttribute('data-task-projectTitle', task.projectTitle);
     edit_btn.setAttribute('type', 'button');
     edit_btn.textContent = "Edit";
 
