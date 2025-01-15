@@ -4,14 +4,14 @@ class Project {
     }
 
     static set projects(data) {
-        updateProjectsToLocalStorage(data);
+        updateProjectsInLocalStorage(data);
     }
 
     static addProject(project) {
         const projects = parseProjectsFromLocalStorage();
         projects[project.title] = project;
 
-        updateProjectsToLocalStorage(projects);
+        updateProjectsInLocalStorage(projects);
         return project;
     }
     
@@ -23,15 +23,15 @@ class Project {
 }
 
 function parseProjectsFromLocalStorage() {
-    if( !localStorage.getItem('projects') ) updateProjectsToLocalStorage({});
+    if( !localStorage.getItem('projects') ) updateProjectsInLocalStorage({});
 
     const parsedProjects = JSON.parse( localStorage.getItem('projects') );
     return parsedProjects;
 }
 
-function updateProjectsToLocalStorage(data) {
+function updateProjectsInLocalStorage(data) {
     const stringified_data = JSON.stringify(data);
     localStorage.setItem('projects', stringified_data);
 }
 
-export { Project };
+export { Project, parseProjectsFromLocalStorage, updateProjectsInLocalStorage };
