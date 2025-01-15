@@ -5,7 +5,7 @@ import { loadCurrentProject, setCurrentProjectTitle } from "./loadProject.js";
 import { makeTaskForm } from "./taskForm.js";
 
 console.log("Script entry point working");
-localStorage.clear();
+//localStorage.clear();
 
 const home = Project.addProject(new Project("Home"));
 const work = Project.addProject(new Project("My Work"));

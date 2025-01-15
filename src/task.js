@@ -1,5 +1,12 @@
 import { Project, parseProjectsFromLocalStorage, updateProjectsInLocalStorage } from "./project";
 
+let sequence_count = 0;
+function getUUID() {
+    const new_id = sequence_count;
+    sequence_count++;
+    return new_id;
+}
+
 export class Task {
     constructor(title, description, dueDate, priority) {
         this.title = title;
@@ -11,17 +18,8 @@ export class Task {
 
     projectTitle;
     
-    #uuid = Task.#getUUID();
-    get uuid() {
-        return this.#uuid;
-    }
-    static #sequence_count = 0;
-    static #getUUID() {
-        const new_id = Task.#sequence_count;
-        Task.#sequence_count++;
-        return new_id;
-    }
-
+    uuid = getUUID();
+    
     static addTask(title, description, dueDate, priority, project_title) {
         const projects = parseProjectsFromLocalStorage();
 
@@ -39,13 +37,24 @@ export class Task {
     }
 
     static deleteTask(task) {
-        console.log(`Deleted Task "${task.title}" from Project "${task.project.title}"`);
-        const project = task.project;
-        const index = project.tasks.indexOf(task);
+        const projects = parseProjectsFromLocalStorage();
+
+        console.log(`Deleted Task "${task.title}" from Project "${task.projectTitle}"`);
+
+        const project = projects[task.projectTitle];
+        const uuid = task.uuid;       
+        const index = project.tasks.findIndex( item => item.uuid === uuid);
+        console.log(index);
         
+
         //return an array of deleted elements, then return the last element using pop().
-        if(index > -1) return project.tasks.splice(index, 1).pop(); 
-        else alert("task to delete NOT found!");
+        if(index > -1) {
+            const deleted = project.tasks.splice(index, 1).pop(); 
+            updateProjectsInLocalStorage(projects);
+            return;
+        } else { 
+            alert("task to delete NOT found!");
+        }
     }
 
     static migrateTask(task, new_project_title) {
