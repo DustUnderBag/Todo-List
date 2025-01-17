@@ -1,0 +1,62 @@
+{
+    "Home": {
+        "tasks": [
+            {
+                "projectTitle": "Home",
+                "uuid": 0,
+                "title": "House Chores",
+                "description": "Wash Dishes",
+                "dueDate": "2024-12-16T05:00:00.000Z",
+                "priority": 2,
+                "completed": false
+            },
+            {
+                "projectTitle": "Home",
+                "uuid": 1,
+                "title": "Buy Groceries",
+                "description": "Budget $200",
+                "dueDate": "2025-01-12T05:00:00.000Z",
+                "priority": 3,
+                "completed": false
+            }
+        ],
+        "title": "Home"
+    },
+    "My Work": {
+        "tasks": [
+            {
+                "projectTitle": "My Work",
+                "uuid": 2,
+                "title": "Call Manager",
+                "description": "Call to discuss project",
+                "dueDate": "2025-01-05T05:00:00.000Z",
+                "priority": 3,
+                "completed": false
+            },
+            {
+                "projectTitle": "My Work",
+                "uuid": 3,
+                "title": "Drafting",
+                "description": "Draft a new design",
+                "dueDate": "2025-02-04T05:00:00.000Z",
+                "priority": 0,
+                "completed": false
+            }
+        ],
+        "title": "My Work"
+    },
+    "Hobbies": {
+        "tasks": [
+            {
+                "projectTitle": "Hobbies",
+                "uuid": 4,
+                "title": "Weight Training",
+                "description": "Upper & Lower Body Split training program",
+                "dueDate": "2024-12-31T05:00:00.000Z",
+                "priority": 1,
+                "completed": false
+            }
+        ],
+        "title": "Hobbies"
+    }
+}
