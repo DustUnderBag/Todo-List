@@ -11,7 +11,6 @@ let currentProjectTitle = "Home";
 
 export function loadCurrentProject() {
     const projects = parseProjectsFromLocalStorage();
-    
     content.textContent = "";
     
     projectTitle.textContent = getCurrentProjectTitle();
