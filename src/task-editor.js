@@ -40,8 +40,6 @@ function projectsToArray() {
 }
 
 export function makeTaskEditor(task) {
-    console.log(task);
- 
     const task_wrapper = document.querySelector(`.task-wrapper[ data-task-uuid="${task.uuid}" ]`);
     task_wrapper.textContent = "";
    
@@ -154,31 +152,27 @@ function makeDropdown(name, inputId, options_arr) {
 
 
 function saveTaskChanges(task) {
-    const projects = parseProjectsFromLocalStorage();
-    const project = projects[task.projectTitle];
-
-    const task_edit = project.tasks.find( item => item.uuid === task.uuid );
-    
     const inputs = cache_editorInputs();
 
     const new_title = inputs.title_edit.value;
     const new_description = inputs.description_edit.value;
-
     const [year, month, day] = inputs.dueDate_edit.value.split('-');
     const new_dueDate =  new Date(year, month - 1, day);
-    
     const new_priority = inputs.priority_edit.value;
     const new_projectTitle = inputs.project_edit.value;
+
+    const projects = parseProjectsFromLocalStorage();
+    const project = projects[task.projectTitle]; 
+    const task_edit = project.tasks.find( item => item.uuid === task.uuid );
 
     task_edit.title = new_title;
     task_edit.description = new_description;
     task_edit.dueDate = new_dueDate;
     task_edit.priority = new_priority;
-    
+    updateProjectsInLocalStorage(projects);
+
+    //Migrate after the storage's been updated after modification.
     if(task_edit.projectTitle !== new_projectTitle) {
         Task.migrateTask(task_edit, new_projectTitle);
-        console.log("task migrated");
     }
-
-    updateProjectsInLocalStorage(projects);
 }

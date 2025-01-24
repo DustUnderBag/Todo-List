@@ -51,12 +51,10 @@ export class Task {
         const project = projects[task.projectTitle];
         const uuid = task.uuid;       
         const index = project.tasks.findIndex( item => item.uuid === uuid);
-        console.log(index);
         
-
-        //return an array of deleted elements, then return the last element using pop().
+        //return an array of deleted elements
         if(index > -1) {
-            const deleted = project.tasks.splice(index, 1).pop(); 
+            project.tasks.splice(index, 1);
             updateProjectsInLocalStorage(projects);
             return;
         } else { 
@@ -65,28 +63,35 @@ export class Task {
     }
 
     static migrateTask(task, new_project_title) {
-        const old_project = task.project;
-        const new_project = Project.projects[new_project_title];
+        const projects = parseProjectsFromLocalStorage();
+
+        const old_project = projects[task.projectTitle];
+        const new_project = projects[new_project_title];
+
+        //Find the same task obj from the storage.
+        const task_migrated = old_project.tasks.find( item => item.uuid === task.uuid);
 
         //If task isn't in old project, do nothing.
-        if( !old_project.tasks.includes(task) ) {
+        if( !old_project.tasks.includes(task_migrated) ) {
             alert("Task not found in this project!");
             return;
         }
         //If task already exists in new project, do nothing.
-        if( new_project.tasks.includes(task) ) {
+        if( new_project.tasks.includes(task_migrated) ) {
             alert("Task is already in this project!");
             return;
         }
 
-        //Remove task from this project object
-        Task.deleteTask(task);
-
         //Change reference to location of task.
-        task.project = new_project;
+        task_migrated.projectTitle = new_project_title;
 
         //Push deleted task to newProject.tasks
-        new_project.tasks.push(task);
-        console.log(`Task "${task.title}" migrated to "${new_project.title}"`);
+        new_project.tasks.push(task_migrated);
+        updateProjectsInLocalStorage(projects);
+
+        //The removal must happen after storage is updated.
+        //Remove task from storage project object.
+        Task.deleteTask(task);
+        console.log(`Task "${task_migrated.title}" migrated to "${new_project.title}"`);
     }
 }
