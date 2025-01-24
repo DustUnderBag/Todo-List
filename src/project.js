@@ -9,6 +9,8 @@ class Project {
 
     static addProject(project) {
         const projects = parseProjectsFromLocalStorage();
+
+        if(projects[project.title]) return;
         projects[project.title] = project;
 
         updateProjectsInLocalStorage(projects);
