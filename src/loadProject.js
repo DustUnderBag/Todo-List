@@ -1,5 +1,5 @@
 import { Task } from "./task.js";
-import { Project, parseProjectsFromLocalStorage, updateProjectsInLocalStorage } from "./project.js";
+import { Project, parseProjectsFromLocalStorage } from "./project.js";
 import { getFormattedDate } from "./formatDate.js";
 import { preSelectProject } from "./taskForm.js";
 import { makeTaskEditor } from "./task-editor.js";

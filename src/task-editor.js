@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { loadCurrentProject, getCurrentProjectTitle } from "./loadProject";
-import { Project } from "./project";
+import { Project, parseProjectsFromLocalStorage, updateProjectsInLocalStorage } from "./project";
 import { Task } from "./task";
 
 //Search for all editor's inputs at once, returned in an object.
@@ -41,9 +41,8 @@ function projectsToArray() {
 
 export function makeTaskEditor(task) {
     console.log(task);
-    const uuid = task.uuid;
-
-    const task_wrapper = document.querySelector(`.task-wrapper[ data-task-uuid="${uuid}" ]`);
+ 
+    const task_wrapper = document.querySelector(`.task-wrapper[ data-task-uuid="${task.uuid}" ]`);
     task_wrapper.textContent = "";
    
     const editor = document.createElement('form');
@@ -155,6 +154,11 @@ function makeDropdown(name, inputId, options_arr) {
 
 
 function saveTaskChanges(task) {
+    const projects = parseProjectsFromLocalStorage();
+    const project = projects[task.projectTitle];
+
+    const task_edit = project.tasks.find( item => item.uuid === task.uuid );
+    
     const inputs = cache_editorInputs();
 
     const new_title = inputs.title_edit.value;
@@ -166,13 +170,15 @@ function saveTaskChanges(task) {
     const new_priority = inputs.priority_edit.value;
     const new_projectTitle = inputs.project_edit.value;
 
-    task.title = new_title;
-    task.description = new_description;
-    task.dueDate = new_dueDate;
-    task.priority = new_priority;
+    task_edit.title = new_title;
+    task_edit.description = new_description;
+    task_edit.dueDate = new_dueDate;
+    task_edit.priority = new_priority;
     
-    if(task.projectTitle !== new_projectTitle) {
-        Task.migrateTask(task, new_projectTitle);
+    if(task_edit.projectTitle !== new_projectTitle) {
+        Task.migrateTask(task_edit, new_projectTitle);
         console.log("task migrated");
     }
+
+    updateProjectsInLocalStorage(projects);
 }
