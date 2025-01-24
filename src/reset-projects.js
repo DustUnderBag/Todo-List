@@ -1,8 +1,9 @@
 import { Project } from "./project";
 import { Task } from "./task";
+import { storageIsEmpty } from "./storage";
 
 export function populateProjects() {
-    if( !isEmpty() ) return;
+    if( !storageIsEmpty() ) return;
     const home = Project.addProject(new Project("Home"));
     const work = Project.addProject(new Project("My Work"));
     const hobbies = Project.addProject(new Project("Hobbies"));
@@ -14,6 +15,3 @@ export function populateProjects() {
     const task5 = Task.addTask("Weight Training", "Upper & Lower Body Split training program", new Date(2024, 11,31), 1, "Hobbies");
 }
 
-function isEmpty() {
-    return Object.keys(Project.projects).length === 0;
-}

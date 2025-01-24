@@ -1,10 +1,17 @@
 import { Project, parseProjectsFromLocalStorage, updateProjectsInLocalStorage } from "./project";
+import { storageIsEmpty } from "./storage";
 
-let sequence_count = 0;
 function getUUID() {
-    const new_id = sequence_count;
-    sequence_count++;
-    return new_id;
+    if( storageIsEmpty() ) setUUID(0);
+    
+    let uuid = +localStorage.getItem('uuid_count');
+    const new_uuid = uuid;
+    setUUID(uuid + 1);
+    return new_uuid;
+}
+
+function setUUID(value) {
+    localStorage.setItem('uuid_count', value);
 }
 
 export class Task {
