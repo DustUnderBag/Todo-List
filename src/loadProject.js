@@ -12,7 +12,9 @@ let currentProjectTitle = "Home";
 export function loadCurrentProject() {
     const projects = parseProjectsFromLocalStorage();
     content.textContent = "";
-    
+
+    if( Object.keys(projects).length === 0 ) return; //Do nothing if empty projects.
+
     projectTitle.textContent = getCurrentProjectTitle();
     
     const currentProject = projects[getCurrentProjectTitle()];
@@ -22,6 +24,11 @@ export function loadCurrentProject() {
 }
 
 export function getCurrentProjectTitle() {
+    //If current project doesn't exist, return the next available project's title.
+    if(!Project.projects[currentProjectTitle]) {
+        const nextProjectTitle = Object.keys(Project.projects)[0];
+        setCurrentProjectTitle(nextProjectTitle);
+    }
     return currentProjectTitle;
 }
 

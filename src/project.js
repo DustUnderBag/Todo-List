@@ -17,6 +17,16 @@ class Project {
         return project;
     }
     
+    static deleteProject(project) {
+        const projects = parseProjectsFromLocalStorage();
+
+        if(!projects[project.title]) return;
+
+        delete projects[project.title];
+        console.log("Delete project '" + project.title + "'.");
+        updateProjectsInLocalStorage(projects);
+    }
+
     tasks = [];
 
     constructor(title) {

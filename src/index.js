@@ -7,7 +7,6 @@ import { populateProjects } from "./reset-projects.js";
 
 console.log("Script entry point working");
 populateProjects();
-//localStorage.clear();
 
 makeListFromProjects();
 loadCurrentProject();
@@ -40,14 +39,32 @@ function makeListFromProjects(item) {
         btn.textContent = project;
         btn.setAttribute('id', project);
         btn.setAttribute('type', 'button');
-
-        li.append(btn);
-        project_list.append(li);
-
+        
         btn.addEventListener('click', e => {
             setCurrentProjectTitle(e.target.id);
             loadCurrentProject();
         });
+
+        li.append(btn);
+
+        li.append(deleteProjectBtn(Project.projects[project]));
+        project_list.append(li);        
     }
     
+}
+
+function deleteProjectBtn(project) {
+    const btn = document.createElement('button');
+    btn.textContent = "Delete";
+    btn.setAttribute('type', 'button');
+    btn.classList.add('delete-project');
+    btn.setAttribute('data-project-title', project.title);
+
+    btn.addEventListener('click', e => {
+        Project.deleteProject(project);
+        makeListFromProjects();
+        loadCurrentProject();
+    });
+
+    return btn;
 }
