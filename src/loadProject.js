@@ -10,9 +10,12 @@ const projectTitle = document.querySelector('h1.project-title');
 let currentProjectTitle = "Home";
 
 export function loadCurrentProject() {
+    if(currentProjectTitle === "All Tasks") {
+        loadAllTasks();
+        return;
+    }
     const projects = parseProjectsFromLocalStorage();
     content.textContent = "";
-
     if( Object.keys(projects).length === 0 ) return; //Do nothing if empty projects.
 
     projectTitle.textContent = getCurrentProjectTitle();
@@ -39,7 +42,7 @@ export function setCurrentProjectTitle(project_title) {
     preSelectProject();
 }
 
-function generateTaskItem(task) {
+export function generateTaskItem(task) {
     const taskWrapper = document.createElement('div');
     taskWrapper.classList.add('task-wrapper');
     taskWrapper.setAttribute('data-task-uuid', task.uuid);
@@ -114,4 +117,30 @@ function editBtnHandler(e) {
     
     loadCurrentProject();
     makeTaskEditor(task);
+}
+
+const taskFilters = document.querySelector('ul#task-filters');
+taskFilters.addEventListener('click', filterHandler);
+
+function filterHandler(e) {
+    e.stopPropagation();
+    const button = e.target;
+    if(button.tagName !== "BUTTON") return;
+
+    setCurrentProjectTitle(button.id);
+    loadCurrentProject();
+}
+
+function loadAllTasks() {
+    const projects = parseProjectsFromLocalStorage();
+    content.textContent = "";
+
+    if( Object.keys(projects).length === 0 ) return; //Do nothing if empty projects.
+    projectTitle.textContent = "All Tasks";
+
+    for(const project in projects) {
+        projects[project].tasks.forEach( task => {
+            content.append(generateTaskItem(task));
+        });
+    }
 }

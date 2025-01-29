@@ -6,24 +6,33 @@
     <title>Template</title>
 </head>
 <body>
-    <h1>Template</h1>
+    <div class="sidebar-panel">
+        <h1>Template</h1>
+        <div>
+            <div class="task-form-container">
+                <button class="task-form-button" type="button">New task</button>
+                <form class="task-form"></form>
+            </div>
 
-    <form class="project-form">
-        <p class="form-row">
-            <label for="project-title">Title</label>
-            <input type="text" id="project-title" name="project-title">
-        </p>
-        <button class="add-project" type="button">New Project</button>
-    </form>
+            <ul id="task-filters">
+                <li><button id="All Tasks" type="button">All Tasks</button></li>
+                <li><button id="Today" type="button">Today</button></li>
+                <li><button id="Overdue" type="button">Overdue</button></li>
+            </ul>
+        </div>
 
-    <div class="task-form-container">
-        <button class="task-form-button" type="button">New task</button>
-        <form class="task-form"></form>
+        <form class="project-form">
+            <p class="form-row">
+                <label for="project-title">Title</label>
+                <input type="text" id="project-title" name="project-title">
+            </p>
+            <button class="add-project" type="button">New Project</button>
+        </form>
+        
+        <ul class="project-window">
+            Projects
+        </ul>
     </div>
-    
-    <ul class="project-window">
-        Projects
-    </ul>
 
     <div class="project-panel">
         <h1 class="project-title"></h1>
