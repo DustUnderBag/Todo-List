@@ -14,4 +14,3 @@ export function populateProjects() {
     const task4 = Task.addTask("Drafting", "Draft a new design", new Date(2025, 1, 4), 0, "My Work");
     const task5 = Task.addTask("Weight Training", "Upper & Lower Body Split training program", new Date(2024, 11,31), 1, "Hobbies");
 }
-

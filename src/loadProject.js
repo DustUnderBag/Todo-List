@@ -3,6 +3,7 @@ import { Project, parseProjectsFromLocalStorage } from "./project.js";
 import { getFormattedDate } from "./formatDate.js";
 import { preSelectProject } from "./taskForm.js";
 import { makeTaskEditor } from "./task-editor.js";
+import { isToday, isBefore } from "date-fns";
 
 const content = document.querySelector('div.content');
 const projectTitle = document.querySelector('h1.project-title');
@@ -10,9 +11,15 @@ const projectTitle = document.querySelector('h1.project-title');
 let currentProjectTitle = "Home";
 
 export function loadCurrentProject() {
-    if(currentProjectTitle === "All Tasks") {
-        loadAllTasks();
-        return;
+    switch( currentProjectTitle ) {
+        case "All Tasks": {
+            loadAllTasks();
+            return;            
+        }
+        case "Today": {
+            loadTodayTasks();
+            return;            
+        }
     }
     const projects = parseProjectsFromLocalStorage();
     content.textContent = "";
@@ -141,6 +148,21 @@ function loadAllTasks() {
     for(const project in projects) {
         projects[project].tasks.forEach( task => {
             content.append(generateTaskItem(task));
+        });
+    }
+}
+
+function loadTodayTasks() {
+    content.textContent = "";
+
+    if( Object.keys(Project.projects).length === 0 ) return; //Do nothing if empty projects.
+    projectTitle.textContent = "Today";
+
+    for(const project in Project.projects) {
+        Project.projects[project].tasks.forEach( task => {
+            if(isToday(task.dueDate)) {
+                content.append(generateTaskItem(task));
+            }
         });
     }
 }
