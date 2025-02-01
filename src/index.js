@@ -1,6 +1,6 @@
 import "./reset.css";
-import { Task } from "./task.js";
-import { Project, parseProjectsFromLocalStorage, updateProjectsInLocalStorage } from "./project.js";
+import "./styles.css";
+import { Project } from "./project.js";
 import { loadCurrentProject, setCurrentProjectTitle } from "./loadProject.js";
 import { makeTaskForm } from "./taskForm.js";
 import { populateProjects } from "./reset-projects.js";

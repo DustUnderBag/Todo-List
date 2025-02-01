@@ -58,20 +58,25 @@ export function generateTaskItem(task) {
     const edit_btn = makeEditBtn(task);
     taskWrapper.append(edit_btn);
 
+    const infoWrapper = document.createElement('div');
+    infoWrapper.classList.add('info-wrapper');
+
     const title = document.createElement('h3');
     title.classList.add('task-title');
     title.textContent = task.title;
-    taskWrapper.append(title);
+    infoWrapper.append(title);
 
     const description = document.createElement('p');
     description.classList.add('task-description');
     description.textContent = task.description;
-    taskWrapper.append(description);
+    infoWrapper.append(description);
 
     const dueDate = document.createElement('span');
     dueDate.classList.add('task-dueDate');
     dueDate.textContent = getFormattedDate(task.dueDate);
-    taskWrapper.append(dueDate);
+    infoWrapper.append(dueDate);
+
+    taskWrapper.append(infoWrapper);
 
     return taskWrapper;
 }
@@ -82,7 +87,7 @@ function makeCompletedBtn(task) {
     complete_btn.setAttribute('data-task-uuid', task.uuid);
     complete_btn.setAttribute('data-task-projectTitle', task.projectTitle);
     complete_btn.setAttribute('type', 'button');
-    complete_btn.textContent = "complete";
+    complete_btn.textContent = "";
 
     complete_btn.addEventListener('click', completeBtnHandler);
 
@@ -106,7 +111,7 @@ function makeEditBtn(task) {
     edit_btn.setAttribute('data-task-uuid', task.uuid);
     edit_btn.setAttribute('data-task-projectTitle', task.projectTitle);
     edit_btn.setAttribute('type', 'button');
-    edit_btn.textContent = "Edit";
+    edit_btn.textContent = "";
 
     edit_btn.addEventListener('click', editBtnHandler);
 
