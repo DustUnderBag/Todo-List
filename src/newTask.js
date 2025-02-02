@@ -1,4 +1,5 @@
 import { Task } from "./task.js";
+import { makeListFromProjects } from "./project-list.js";
 
 export function makeNewTask() {
     const title = document.querySelector('input#task-title');
@@ -20,5 +21,6 @@ export function makeNewTask() {
     dueDate.value = "";
     priority.value = "";
 
+    makeListFromProjects();
     return newTask;
 }

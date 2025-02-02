@@ -48,7 +48,41 @@ button.project {
     }
 }
 
-button.delete-project {
+button.show-options-project {
+    appearance: none;
+    background-color: transparent;
+    color: #fff;
+    outline: none;
+    border: none;
+
+    padding: 0;
+    border-radius: 2px;
+    font-size: .7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    &:hover {
+        background-color: #75757588;
+        background-image: url(../images/other.svg);
+        background-size: 70%;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+}
+
+.options-box-project {
+    position: absolute;
+    top: -10px;
+    left: 17px;
+    background-color: rgba(131, 131, 131, 0.525);
+    border-radius: 3px;
+}
+
+.options-box-project > button {
+    display: block;
     appearance: none;
     background-color: transparent;
     color: #fff;
@@ -56,12 +90,11 @@ button.delete-project {
     border: none;
 
     border-radius: 2px;
-    background-image: url(../images/other.svg);
-    background-size: 70%;
-    background-position: center;
-    background-repeat: no-repeat;
+
+    width: 60px;
+    font-size: 0.8rem;
 
     &:hover {
-        background-color: #75757588;
+        background-color: rgb(116, 105, 86);
     }
 }
