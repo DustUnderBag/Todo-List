@@ -1,5 +1,7 @@
-import "./reset.css";
-import "./styles.css";
+import "./styles/reset.css";
+import "./styles/task.css";
+import "./styles/sidebar.css"
+
 import { Project } from "./project.js";
 import { loadCurrentProject, setCurrentProjectTitle } from "./loadProject.js";
 import { makeTaskForm } from "./taskForm.js";
@@ -55,7 +57,6 @@ function makeListFromProjects(item) {
 
 function deleteProjectBtn(project) {
     const btn = document.createElement('button');
-    btn.textContent = "Delete";
     btn.setAttribute('type', 'button');
     btn.classList.add('delete-project');
     btn.setAttribute('data-project-title', project.title);
