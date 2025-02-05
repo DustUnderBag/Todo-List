@@ -20,25 +20,26 @@
                             <input type="text" placeholder="Description" id="task-description" name="task-description">
                         </p>
 
-                        <p class="form-row">
-                            <input type="date" id="task-dueDate" name="task-dueDate">
-                            <div>
-                                <label for="task-priority">Priority</label>
-                                <select name="task-priority" id="task-priority">
-                                    <option value="0">None</option>
-                                    <option value="1">Low</option>
-                                    <option value="2">Medium</option>
-                                    <option value="3">High</option>
-                                </select>
-                            </div>
-                        </p>
+                        <p class="form-row multi-inputs">
+                            <span>
+                                <input type="date" id="task-dueDate" name="task-dueDate">
+                            </span>
 
-                        <p class="form-row">
-                            <label for="task-project">Project</label>
-                            <select name="task-project" id="task-project"></select>
+                            <span>
+                                <label for="task-priority"></label>
+                                <select name="task-priority" id="task-priority">
+                                    <option value="0">Priority None</option>
+                                    <option value="1">Priority Low</option>
+                                    <option value="2">Priority Medium</option>
+                                    <option value="3">Priority High</option>
+                                </select>
+                            </span>
                         </p>
-                        <button class="add-task" type="button">Add task</button>
-                        <button class="cancel-task" type="button">Cancel</button>
+                        <p class="form-row">
+                            <select name="task-project" id="task-project"></select>
+                            <button class="cancel-task" type="button">Cancel</button>
+                            <button class="add-task" type="button">Add task</button>
+                        </p>
                     </form>
                 </dialog>
             </div>
