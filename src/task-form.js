@@ -6,7 +6,6 @@ import { Project } from "./project";
 const showTaskForm_btn = document.querySelector('button.show-task-form');
 const taskForm_modal = document.querySelector('dialog.task-form-modal');
 const taskForm = document.querySelector('dialog.task-form-modal form');
-console.log(taskForm);
 const priorities = [
     {name: "None",   value: 0},
     {name: "Low",    value: 1},
@@ -24,28 +23,27 @@ function projectsToArray() {
 }
 
 export function makeTaskForm() {
-    taskForm.textContent = "";
+    //Set dueDate input min to today.
+    const dueDate_input = document.querySelector('input#task-dueDate');
+    const today = format( new Date(), 'yyyy-MM-dd' );
+    dueDate_input.value = today;
+    dueDate_input.setAttribute('min', today);
 
-    taskForm.appendChild( makeTextInput("Task title", "task-title") );
-    taskForm.appendChild( makeTextInput("Description", "task-description") );
-    taskForm.appendChild( makeDateInput("task-dueDate") );
-    taskForm.appendChild( makeDropdown("Priority", "task-priority", priorities) );
-    taskForm.appendChild( makeDropdown("Project", "task-project", projectsToArray()) );
+    //Populate priority select with options
+    const priority_select = document.querySelector('select#task-priority');
+    priority_select.textContent = "";
+    makeOptionsForSelect(priority_select, priorities);
 
-    const addTask_btn = document.createElement('button');
-    addTask_btn.classList.add('add-task');
-    addTask_btn.textContent = "Add task";
-    addTask_btn.setAttribute('type', 'button');
+    //Populate project select with options
+    const project_select = document.querySelector('select#task-project');
+    project_select.textContent = "";
+    makeOptionsForSelect(project_select, projectsToArray());
+
+    const addTask_btn = document.querySelector('.task-form button.add-task');
     addTask_btn.addEventListener('click', newTaskHandler);
 
-    const cancelTask_btn = document.createElement('button');
-    cancelTask_btn.classList.add('cancel-task');
-    cancelTask_btn.textContent = "Cancel";
-    cancelTask_btn.setAttribute('type', 'button');
+    const cancelTask_btn = document.querySelector('.task-form button.cancel-task');
     cancelTask_btn.addEventListener('click', closeTaskForm);
-
-    taskForm.appendChild(addTask_btn);
-    taskForm.appendChild(cancelTask_btn);
 
     preSelectProject();
 
@@ -116,17 +114,25 @@ function makeDropdown(name, inputId, options_arr) {
     return wrapper;
 }
 
+
+function makeOptionsForSelect(select_input, options_arr) {
+    options_arr.forEach(element => {
+        const option = document.createElement('option');
+        option.textContent = element.name;
+        option.setAttribute('value', element.value);
+        select_input.appendChild(option);
+    });
+}
+
 export function preSelectProject() {
-    //If task form does not exist, don't select anything.
-    if( taskForm.textContent === "" ) return;
-    
     //Pre-select the current project in the select menu.
     const currentProjectTitle = getCurrentProjectTitle();
     const currentProject_option = document.querySelector( `option[value='${ currentProjectTitle }']` );
+    console.log(`option[value='${ currentProjectTitle }']`);
+    console.log(currentProject_option);
     currentProject_option.selected = true;
 }
 
 function closeTaskForm() {
-    taskForm.textContent = "";
     taskForm_modal.close();
 }

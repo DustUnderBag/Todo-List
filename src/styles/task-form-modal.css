@@ -1,0 +1,29 @@
+dialog.task-form-modal {
+    margin: auto;
+    padding: 0;
+    border-radius: 5px;
+}
+
+form.task-form {
+    width: 100%;
+    color: #ededed;
+    background-color: #1e1e1e;
+
+    border: 1px solid #ededed9c;
+    font-size: 0.7rem;
+}
+
+
+
+dialog.task-form-modal input,
+dialog.task-form-modal select {
+    border: 1px #fff solid;
+    outline: none;
+    background-color: transparent;
+    color: #ededed;
+}
+
+input#task-title {
+    font-weight: 900;
+    font-size: 1.2rem;
+}

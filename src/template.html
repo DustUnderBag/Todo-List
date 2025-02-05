@@ -12,7 +12,34 @@
             <div class="task-form-container">
                 <button class="show-task-form" type="button">New task</button>
                 <dialog class="task-form-modal">
-                    <form></form>
+                    <form class="task-form">
+                        <p class="form-row">
+                            <input type="text" placeholder="Task title" id="task-title" name="task-title">
+                        </p>
+                        <p class="form-row">
+                            <input type="text" placeholder="Description" id="task-description" name="task-description">
+                        </p>
+
+                        <p class="form-row">
+                            <input type="date" id="task-dueDate" name="task-dueDate">
+                            <div>
+                                <label for="task-priority">Priority</label>
+                                <select name="task-priority" id="task-priority">
+                                    <option value="0">None</option>
+                                    <option value="1">Low</option>
+                                    <option value="2">Medium</option>
+                                    <option value="3">High</option>
+                                </select>
+                            </div>
+                        </p>
+
+                        <p class="form-row">
+                            <label for="task-project">Project</label>
+                            <select name="task-project" id="task-project"></select>
+                        </p>
+                        <button class="add-task" type="button">Add task</button>
+                        <button class="cancel-task" type="button">Cancel</button>
+                    </form>
                 </dialog>
             </div>
 

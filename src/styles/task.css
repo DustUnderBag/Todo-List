@@ -9,7 +9,7 @@ body {
     display: grid;
     grid-template-columns: 200px 1fr;
     grid-template-areas: "sidebar-panel project-panel";
-    color: var(--font-clr)
+    color: var(--font-clr);
 }
 
 nav.sidebar-panel {

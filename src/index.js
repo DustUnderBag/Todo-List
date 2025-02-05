@@ -1,6 +1,7 @@
 import "./styles/reset.css";
 import "./styles/task.css";
-import "./styles/sidebar.css"
+import "./styles/sidebar.css";
+import "./styles/task-form-modal.css";
 
 import { Project } from "./project.js";
 import { loadCurrentProject, setCurrentProjectTitle } from "./loadProject.js";
