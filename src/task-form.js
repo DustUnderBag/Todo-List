@@ -3,9 +3,10 @@ import { makeNewTask } from "./newTask";
 import { loadCurrentProject, getCurrentProjectTitle } from "./loadProject";
 import { Project } from "./project";
 
-const taskForm_btn = document.querySelector('button.task-form-button');
-const taskForm = document.querySelector('form.task-form');
-
+const showTaskForm_btn = document.querySelector('button.show-task-form');
+const taskForm_modal = document.querySelector('dialog.task-form-modal');
+const taskForm = document.querySelector('dialog.task-form-modal form');
+console.log(taskForm);
 const priorities = [
     {name: "None",   value: 0},
     {name: "Low",    value: 1},
@@ -23,7 +24,6 @@ function projectsToArray() {
 }
 
 export function makeTaskForm() {
-    taskForm_btn.style.display = "none";
     taskForm.textContent = "";
 
     taskForm.appendChild( makeTextInput("Task title", "task-title") );
@@ -47,8 +47,9 @@ export function makeTaskForm() {
     taskForm.appendChild(addTask_btn);
     taskForm.appendChild(cancelTask_btn);
 
-    
     preSelectProject();
+
+    taskForm_modal.showModal();
 }
 
 function newTaskHandler(e) {
@@ -127,5 +128,5 @@ export function preSelectProject() {
 
 function closeTaskForm() {
     taskForm.textContent = "";
-    taskForm_btn.style.display = "block";
+    taskForm_modal.close();
 }

@@ -4,9 +4,9 @@ import "./styles/sidebar.css"
 
 import { Project } from "./project.js";
 import { loadCurrentProject, setCurrentProjectTitle } from "./loadProject.js";
-import { makeTaskForm } from "./taskForm.js";
+import { makeTaskForm } from "./task-form.js";
 import { populateProjects } from "./reset-projects.js";
-import { makeListFromProjects } from "./project-list.js";
+import { makeListFromProjects } from "./project-selector.js";
 
 console.log("Script entry point working");
 populateProjects();
@@ -28,6 +28,6 @@ addProject_btn.addEventListener('click', e => {
     loadCurrentProject();
 });
 
-const taskForm_btn = document.querySelector('button.task-form-button');
-taskForm_btn.addEventListener('click', makeTaskForm);
+const showTaskForm_btn = document.querySelector('button.show-task-form');
+showTaskForm_btn.addEventListener('click', makeTaskForm);
 

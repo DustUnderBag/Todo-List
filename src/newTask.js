@@ -1,5 +1,5 @@
 import { Task } from "./task.js";
-import { makeListFromProjects } from "./project-list.js";
+import { makeListFromProjects } from "./project-selector.js";
 
 export function makeNewTask() {
     const title = document.querySelector('input#task-title');

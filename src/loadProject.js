@@ -1,7 +1,7 @@
 import { Task } from "./task.js";
 import { Project, parseProjectsFromLocalStorage } from "./project.js";
 import { getFormattedDate } from "./formatDate.js";
-import { preSelectProject } from "./taskForm.js";
+import { preSelectProject } from "./task-form.js";
 import { makeTaskEditor } from "./task-editor.js";
 import { isToday, isPast } from "date-fns";
 

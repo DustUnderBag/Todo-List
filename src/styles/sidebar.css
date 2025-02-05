@@ -19,7 +19,9 @@ nav.sidebar-panel {
     &:hover {
         background-color: #e39e8338;
     }
-
+    &.current-project {
+        background-color: #e39e8338;
+    }
 }
 
 button.project {

@@ -1,12 +1,14 @@
 import { Project } from "./project";
-import { loadCurrentProject, setCurrentProjectTitle } from "./loadProject";
+import { loadCurrentProject, setCurrentProjectTitle, getCurrentProjectTitle } from "./loadProject";
 
-export function makeListFromProjects() {
-    const project_list = document.querySelector('ul.project-window');
+const project_list = document.querySelector('ul.project-window');
+
+export function makeListFromProjects() {    
     project_list.textContent = "";
     
     for(const project in Project.projects) {
         const li = document.createElement('li');
+        li.setAttribute('data-project-title', project);
         const btn = document.createElement('button');
         btn.classList.add("project");
         btn.textContent = project;
@@ -16,13 +18,17 @@ export function makeListFromProjects() {
         btn.addEventListener('click', e => {
             setCurrentProjectTitle(e.target.id);
             loadCurrentProject();
+
+            makeListFromProjects();
+            if(project === getCurrentProjectTitle() ) li.classList.add('current-project');
         });
-
         li.appendChild(btn);
-
         li.appendChild(showOptionsBtn(Project.projects[project]));
         project_list.appendChild(li);        
     }
+    const selector = `li[data-project-title="${getCurrentProjectTitle()}"]`;
+    const selectedProjectLi = document.querySelector(selector);
+    selectedProjectLi.classList.add('current-project');
 }
 
 function showOptionsBtn(project) {   
@@ -38,12 +44,10 @@ function showOptionsBtn(project) {
 
     btn.addEventListener("mouseenter", e => {
         btn.textContent = "";
-        btn.classList.add('hovered');
     });
 
     btn.addEventListener("mouseleave", e => {
         btn.textContent = numberOfTasks;
-        btn.classList.remove('hovered');
     });
 
     btn.addEventListener('click', e => {
