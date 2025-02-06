@@ -8,6 +8,9 @@
 
     --highlight-bg-clr: #ae533774;
     --hover-bg-clr: #725e5043;
+
+    --item-padding-block: 5px;
+    --item-border-radius: 4px;
 }
 
 nav.sidebar-panel {
@@ -25,7 +28,7 @@ nav.sidebar-panel {
     grid-template-columns: 1fr auto;
     align-items: center;
 
-    border-radius: 4px;
+    border-radius: var(--item-border-radius);
     padding: 0px 5px;
     font-size: 1rem;
 
@@ -50,7 +53,7 @@ button.project {
 
     text-align: left;
     margin-left: 16px;
-    padding: 4px 16px;
+    padding: var(--item-padding-block) 16px;
     
     position: relative;
 
@@ -123,4 +126,36 @@ button.show-options-project {
     &:hover {
         background-color: rgb(116, 105, 86);
     }
+}
+
+button.show-task-form {
+    appearance: none;
+    border: none;
+    outline: none;
+    background: none;
+
+    width: 100%;
+    padding-block: var(--item-padding-block);
+    border-radius: var(--item-border-radius);
+
+    display: flex;    
+    align-items: center;
+    gap: 6px; 
+    color: #fff;
+    font-size: 1.15rem;
+
+    &:hover {
+        background-color: var(--hover-bg-clr);
+    }
+}
+
+button.show-task-form::before {
+    display: inline-block;
+    content: "";
+
+    width: 1.8rem;
+    height: 1.8rem;
+    background-image: url(../images/add-task.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
 }

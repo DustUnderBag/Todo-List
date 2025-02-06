@@ -1,7 +1,6 @@
 import { Task } from "./task.js";
 import { Project, parseProjectsFromLocalStorage } from "./project.js";
 import { getFormattedDate } from "./formatDate.js";
-import { preSelectProject } from "./task-form.js";
 import { makeTaskEditor } from "./task-editor.js";
 import { isToday, isPast } from "date-fns";
 
@@ -134,7 +133,7 @@ function filterHandler(e) {
     const button = e.target;
     if(button.tagName !== "BUTTON") return;
 
-    setCurrentProjectTitle(button.id);
+    setCurrentProjectTitle(button.id.replace("-", " "));
     loadCurrentProject();
 }
 
