@@ -1,49 +1,61 @@
+:root {
+    --sidebar-clr: #262626;
+    --project-clr: #1e1e1e;
+    --font-clr: #fff;
+    --grey-font-clr: #afafaf;
+}
+
 nav.sidebar-panel {
-    padding-inline: 1rem;
+    padding: 24px 16px;
 }
 
 .sidebar-panel ul {
+    margin-top: 16px;
     list-style: none;
     padding: 0;
 }
 
 .sidebar-panel li {
     display: grid;
-    grid-template-columns: 1fr 1rem;
+    grid-template-columns: 1fr auto;
+    align-items: center;
 
     border-radius: 4px;
-    padding-inline: 5px;
-    padding-block: 2px;
-    font-size: 0.8rem;
+    padding: 0px 5px;
+    font-size: 1rem;
 
     &:hover {
-        background-color: #e39e8338;
+        background-color: #69442b6f;
     }
+
     &.current-project {
-        background-color: #e39e8338;
+        background-color: #ac2f2174;
     }
 }
 
 button.project {
     appearance: none;
     background-color: transparent;
-    color: #fff;
+    color: var(--font-clr);
     outline: none;
     border: none;
 
     text-align: left;
     margin-left: 16px;
-    line-height: 1.3;
+    padding: 4px 16px;
+    
     position: relative;
 
     &:before {
         position: absolute;
         content: "";
-        left: -1rem;
-        
-        width: 1rem;
-        height: 1rem;
+        left: -11px;
+        top: 7px;
+
+        width: 18px;
+        height: 18px;
         background-image: url(../images/user-project.svg);
+        opacity: 0.7;
         background-size: 90%;
         background-position: center;
         background-repeat: no-repeat;
@@ -52,14 +64,18 @@ button.project {
 
 button.show-options-project {
     appearance: none;
-    background-color: transparent;
-    color: #fff;
     outline: none;
     border: none;
 
-    padding: 0;
+    background-color: transparent;
+    color: var(--grey-font-clr);
     border-radius: 2px;
-    font-size: .7rem;
+    font-size: 0.9rem;
+
+    width: 24px;
+    height: 24px;
+    padding: 0;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,24 +93,24 @@ button.show-options-project {
 
 .options-box-project {
     position: absolute;
-    top: -10px;
+    top: -2px;
     left: 17px;
     background-color: rgba(131, 131, 131, 0.525);
     border-radius: 3px;
 }
 
 .options-box-project > button {
-    display: block;
-    appearance: none;
-    background-color: transparent;
-    color: #fff;
     outline: none;
     border: none;
 
-    border-radius: 2px;
+    display: block;
+    width: 70px;
+    padding-block: 6px;
 
-    width: 60px;
-    font-size: 0.8rem;
+    background-color: transparent;
+    color: var(--font-clr);
+    font-size: 1rem;
+    border-radius: 2px;
 
     &:hover {
         background-color: rgb(116, 105, 86);
