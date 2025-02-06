@@ -1,8 +1,13 @@
 :root {
     --sidebar-clr: #262626;
     --project-clr: #1e1e1e;
+    
     --font-clr: #fff;
     --grey-font-clr: #afafaf;
+    --highlight-font-clr: #f16058;
+
+    --highlight-bg-clr: #ae533774;
+    --hover-bg-clr: #725e5043;
 }
 
 nav.sidebar-panel {
@@ -25,11 +30,14 @@ nav.sidebar-panel {
     font-size: 1rem;
 
     &:hover {
-        background-color: #69442b6f;
+        background-color: var(--hover-bg-clr);
     }
 
     &.current-project {
-        background-color: #ac2f2174;
+        background-color: var(--highlight-bg-clr);
+        & button.project {
+            color: var(--highlight-font-clr);
+        }
     }
 }
 
