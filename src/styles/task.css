@@ -28,6 +28,16 @@ main.project-panel {
     background-color: var(--project-clr);
 
     padding: 2.4rem;
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & > * {
+        width: min(100%, 600px);
+        min-width: 210px;
+    }
 }
 
 /*Task Wrapper*/
