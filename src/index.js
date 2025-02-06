@@ -19,12 +19,8 @@ const addProject_btn = document.querySelector('button.add-project');
 addProject_btn.addEventListener('click', e => {
     const title = document.querySelector('input#project-title').value;
     Project.addProject(new Project(title));
+    
     makeListFromProjects();
-
-    //Update and open the task form when task form is already opened,
-    //so that the project select menu can auto-select the newly created project.
-    if( document.querySelector('form.task-form').textContent !== "" ) makeTaskForm();
-
     setCurrentProjectTitle(title);
     loadCurrentProject();
 });

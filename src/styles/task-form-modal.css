@@ -1,3 +1,14 @@
+:root {
+    --title-font-size: 1.2rem;
+    --input-height: 1.2rem;
+    --input-width: 105px;
+
+    --sidebar-clr: #262626;
+    --project-clr: #1e1e1e;
+    --font-clr: #fff;
+    --dropdown-clr: #303030;
+}
+
 dialog.task-form-modal {
     margin: auto;
     padding: 0;
@@ -8,8 +19,8 @@ dialog.task-form-modal {
 form.task-form {
     padding: 12px 20px;
     width: 300px;
-    color: #ededed;
-    background-color: #1e1e1e;
+    color: var(--font-clr);
+    background-color: var(--sidebar-clr);
     font-size: 0.7rem;
 }
 
@@ -35,15 +46,15 @@ form.task-form {
 
 .task-form select,
 input[type="date"] {
-    background-color: #303030;
-    height: 1.2rem;
-    width: 105px;
+    background-color: var(--dropdown-clr);
+    height: var(--input-height);
+    width: var(--input-width);
     padding-left: 5px;
 }
 
 input#task-title {
     font-weight: 900;
-    font-size: 1.2rem;
+    font-size: var(--title-font-size);
 }
 
 .task-form .form-row:last-of-type {
@@ -66,7 +77,7 @@ input#task-title {
     outline: none;
     padding: 1px;
     width: 50px;
-    height: 1.2rem;
+    height: var(--input-height);
     border-radius: 2px;
     color: #ffffff;
 
