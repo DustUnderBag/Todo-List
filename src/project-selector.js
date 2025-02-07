@@ -17,6 +17,7 @@ export function makeListFromProjects() {
         btn.setAttribute('type', 'button');
         
         btn.addEventListener('click', e => {
+            console.log("Project/filter selected");
             setCurrentProjectTitle(e.target.id);
             loadCurrentProject();
 

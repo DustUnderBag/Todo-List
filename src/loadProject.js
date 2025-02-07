@@ -2,24 +2,16 @@ import { Task } from "./task.js";
 import { Project, parseProjectsFromLocalStorage } from "./project.js";
 import { getFormattedDate } from "./formatDate.js";
 import { makeTaskEditor } from "./task-editor.js";
-import { isToday, isPast } from "date-fns";
 
 const content = document.querySelector('div.content');
 const projectTitle = document.querySelector('h1.project-title');
 
-let currentProjectTitle = "All Days";
+let currentProjectTitle = "All Tasks";
 
 export function loadCurrentProject() {
     const projects = parseProjectsFromLocalStorage();
     content.textContent = "";
     if( Object.keys(projects).length === 0 ) return; //Do nothing if empty projects.
-
-    //Load the filters when non-user-created projects are opened.
-    if(currentProjectTitle === "All Tasks" || currentProjectTitle === "Today" 
-        || currentProjectTitle === "Overdue") {
-        taskFilters[currentProjectTitle]();
-        return;
-    }
 
     projectTitle.textContent = getCurrentProjectTitle();
     
@@ -123,50 +115,3 @@ function editBtnHandler(e) {
     loadCurrentProject();
     makeTaskEditor(task);
 }
-
-const taskFilters_container = document.querySelector('ul#task-filters');
-taskFilters_container.addEventListener('click', filterHandler);
-
-function filterHandler(e) {
-    e.stopPropagation();
-    const button = e.target;
-    if(button.tagName !== "BUTTON") return;
-
-    const currentProjectTitle = button.getAttribute('data-project-title');
-    setCurrentProjectTitle(currentProjectTitle.replace("-", " "));
-    loadCurrentProject();
-}
-
-const taskFilters = {
-    "All Tasks"() {
-        projectTitle.textContent = "All Tasks";
-
-        for(const project in Project.projects) {
-            Project.projects[project].tasks.forEach( task => {
-                content.append(generateTaskItem(task));
-            });
-        }
-    },
-    "Today"() {
-        projectTitle.textContent = "Today's Tasks";
-
-        for(const project in Project.projects) {
-            Project.projects[project].tasks.forEach( task => {
-                if(isToday(task.dueDate)) {
-                    content.append(generateTaskItem(task));
-                }
-            });
-        }
-    },
-    "Overdue"() {
-        projectTitle.textContent = "Overdue Tasks";
-
-        for(const project in Project.projects) {
-            Project.projects[project].tasks.forEach( task => {
-                if( !isToday(task.dueDate) && isPast(task.dueDate)) {
-                    content.append(generateTaskItem(task));
-                }
-            });
-        }
-    },
-};
