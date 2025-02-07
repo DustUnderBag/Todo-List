@@ -4,16 +4,17 @@ import "./styles/sidebar.css";
 import "./styles/task-form-modal.css";
 
 import { Project } from "./project.js";
-import { loadCurrentProject, setCurrentProjectTitle } from "./loadProject.js";
+import { getCurrentProjectTitle, loadCurrentProject, setCurrentProjectTitle } from "./loadProject.js";
 import { makeTaskForm } from "./task-form.js";
 import { populateProjects } from "./reset-projects.js";
-import { makeListFromProjects } from "./project-selector.js";
+import { makeListFromProjects, highlightProjectSelector } from "./project-selector.js";
 import { displayFilterTaskCounts } from "./filter-task-counts.js";
 
 console.log("Script entry point working");
 populateProjects();
 
 makeListFromProjects();
+highlightProjectSelector(getCurrentProjectTitle());
 loadCurrentProject();
 displayFilterTaskCounts();
 

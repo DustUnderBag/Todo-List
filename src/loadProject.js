@@ -6,7 +6,7 @@ import { makeTaskEditor } from "./task-editor.js";
 const content = document.querySelector('div.content');
 const projectTitle = document.querySelector('h1.project-title');
 
-let currentProjectTitle = "All Tasks";
+let currentProjectTitle = "Home";
 
 export function loadCurrentProject() {
     const projects = parseProjectsFromLocalStorage();
@@ -23,15 +23,16 @@ export function loadCurrentProject() {
 
 export function getCurrentProjectTitle() {
     //If current project doesn't exist, return the next available project's title.
-    if(!Project.projects[currentProjectTitle]) {
+    if( !Project.projects[currentProjectTitle] && !isFilter(currentProjectTitle) ) {
         const nextProjectTitle = Object.keys(Project.projects)[0];
         setCurrentProjectTitle(nextProjectTitle);
     }
-    return currentProjectTitle;
+    return currentProjectTitle.replace("-", " ");
 }
 
 export function setCurrentProjectTitle(project_title) {
-    currentProjectTitle = project_title;
+    currentProjectTitle = project_title.replace("-", " ");
+    console.log("Set project to " + currentProjectTitle);
 }
 
 export function generateTaskItem(task) {
@@ -114,4 +115,11 @@ function editBtnHandler(e) {
     
     loadCurrentProject();
     makeTaskEditor(task);
+}
+
+export function isFilter(project_title) {
+    if( project_title === "All Tasks" || project_title === "Today" || project_title === "Overdue") {
+        return true;
+    }
+    return false;
 }

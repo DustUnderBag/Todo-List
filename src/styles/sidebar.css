@@ -80,7 +80,7 @@ button.project:before {
     background-image: url(../images/user-project.svg);
 }
 
-button[data-project-title="All-Tasks"]:before {
+button[data-project-title="All Tasks"]:before {
     background-image: url(../images/all-tasks.svg);
 }
 

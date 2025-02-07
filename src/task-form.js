@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { makeNewTask } from "./newTask";
-import { loadCurrentProject, getCurrentProjectTitle } from "./loadProject";
+import { loadCurrentProject, getCurrentProjectTitle, isFilter } from "./loadProject";
 import { Project } from "./project";
 import { displayFilterTaskCounts } from "./filter-task-counts.js";
 
@@ -67,6 +67,8 @@ function makeOptionsForSelect(select_input, options_arr) {
 export function preSelectProject() {
     //Pre-select the current project in the select menu.
     const currentProjectTitle = getCurrentProjectTitle();
+    if(isFilter(currentProjectTitle)) return;
+    
     const currentProject_option = document.querySelector( `option[value='${ currentProjectTitle }']` );
     currentProject_option.selected = true;
 }

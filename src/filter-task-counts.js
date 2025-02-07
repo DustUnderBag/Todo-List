@@ -1,19 +1,30 @@
 import { Project } from "./project";
 import { isToday, isPast } from "date-fns";
-import { setCurrentProjectTitle, generateTaskItem } from "./loadProject";
+import { getCurrentProjectTitle, setCurrentProjectTitle, generateTaskItem } from "./loadProject";
+import { highlightProjectSelector, deselectProjectSelector } from "./project-selector";
 
 const content = document.querySelector('div.content');
 const projectTitle = document.querySelector('h1.project-title');
 
 function filterHandler(e) {
     e.stopPropagation();
+
     const button = e.target;
     if(button.tagName !== "BUTTON") return;
 
     content.textContent = "";
-    const newProjectTitle = button.getAttribute('data-project-title').replace("-", " ");
+    
+    //Deselect previous project selector.
+    const oldProjectTitle = getCurrentProjectTitle();
+    deselectProjectSelector(oldProjectTitle);
+
+    const newProjectTitle = button.getAttribute('data-project-title');
     setCurrentProjectTitle(newProjectTitle);
-    loadTaskFilters[newProjectTitle]();
+    console.log(newProjectTitle);
+    loadTaskFilters[newProjectTitle.replace("-", " ")]();
+
+    //Highlight selector of the loaded project.
+    highlightProjectSelector(newProjectTitle);
 }
 
 const loadTaskFilters = {
@@ -55,7 +66,7 @@ taskFilters_container.addEventListener('click', filterHandler);
 
 export function displayFilterTaskCounts() {
     for( let filterName in filterTaskCounts) {
-        let processed_filterName = filterName.replace(" ", "-");
+        let processed_filterName = filterName;
         const taskCount_span = document.querySelector(`[data-project-title = "${processed_filterName}"] + span`);
         taskCount_span.textContent = filterTaskCounts[filterName]();
     }

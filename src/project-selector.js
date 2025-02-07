@@ -5,6 +5,7 @@ const project_list = document.querySelector('ul.project-window');
 
 export function makeListFromProjects() {    
     project_list.textContent = "";
+    console.log(getCurrentProjectTitle());
     
     for(const project in Project.projects) {
         const li = document.createElement('li');
@@ -17,19 +18,33 @@ export function makeListFromProjects() {
         btn.setAttribute('type', 'button');
         
         btn.addEventListener('click', e => {
-            console.log("Project/filter selected");
+            //Deselect previous project selector.
+            const oldProjectTitle = getCurrentProjectTitle();
+            deselectProjectSelector(oldProjectTitle);
+            
             setCurrentProjectTitle(e.target.id);
             loadCurrentProject();
 
-            makeListFromProjects(); //Refresh project list.
+            //Highlight selector of the loaded project.
+            highlightProjectSelector(getCurrentProjectTitle());
         });
         li.appendChild(btn);
         li.appendChild(showOptionsBtn(Project.projects[project]));
         project_list.appendChild(li);
     }
-    const selector = `li[data-project-title="${getCurrentProjectTitle()}"]`;
+}
+
+export function highlightProjectSelector(project_title) {
+    const selector = `li[data-project-title="${project_title}"]`;
     const selectedProjectLi = document.querySelector(selector);
     selectedProjectLi.classList.add('current-project');
+}
+
+export function deselectProjectSelector(project_title) {
+    const selector = `li[data-project-title="${project_title}"]`;
+    const selectedProjectLi = document.querySelector(selector);
+    console.log(selector);
+    selectedProjectLi.classList.remove('current-project');
 }
 
 //Attach a button that displays the task count, which also acts as a button for more options.
