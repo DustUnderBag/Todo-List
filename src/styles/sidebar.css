@@ -44,7 +44,8 @@ nav.sidebar-panel {
     }
 }
 
-button.project {
+button.project,
+button.task-filter {
     appearance: none;
     background-color: transparent;
     color: var(--font-clr);
@@ -52,8 +53,8 @@ button.project {
     border: none;
 
     text-align: left;
-    margin-left: 16px;
-    padding: var(--item-padding-block) 16px;
+    margin-left: 1rem;
+    padding: var(--item-padding-block) 1.2rem;
     
     position: relative;
 
@@ -61,16 +62,34 @@ button.project {
         position: absolute;
         content: "";
         left: -11px;
-        top: 7px;
+        top: 5px;
 
-        width: 18px;
-        height: 18px;
-        background-image: url(../images/user-project.svg);
+        width: 1.4rem;
+        height: 1.4rem;
         opacity: 0.7;
-        background-size: 90%;
+
+        background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
     }
+}
+
+/*Icons for task-filters and user-projects*/
+button.project:before {
+    top: 7px;
+    background-image: url(../images/user-project.svg);
+}
+
+button[data-project-title="All-Tasks"]:before {
+    background-image: url(../images/all-tasks.svg);
+}
+
+button[data-project-title="Today"]:before {
+    background-image: url(../images/today.svg);
+}
+
+button[data-project-title="Overdue"]:before {
+    background-image: url(../images/overdue.svg);
 }
 
 button.show-options-project {
@@ -140,8 +159,9 @@ button.show-task-form {
 
     display: flex;    
     align-items: center;
-    gap: 6px; 
-    color: #fff;
+    gap: 6px;
+    line-height: 1.3;
+    color: var(--highlight-font-clr);
     font-size: 1.15rem;
 
     &:hover {
@@ -150,9 +170,7 @@ button.show-task-form {
 }
 
 button.show-task-form::before {
-    display: inline-block;
     content: "";
-
     width: 1.8rem;
     height: 1.8rem;
     background-image: url(../images/add-task.svg);
