@@ -9,6 +9,7 @@ export function makeListFromProjects() {
     for(const project in Project.projects) {
         const li = document.createElement('li');
         li.setAttribute('data-project-title', project);
+
         const btn = document.createElement('button');
         btn.classList.add("project");
         btn.textContent = project;
@@ -19,38 +20,41 @@ export function makeListFromProjects() {
             setCurrentProjectTitle(e.target.id);
             loadCurrentProject();
 
-            makeListFromProjects();
-            if(project === getCurrentProjectTitle() ) li.classList.add('current-project');
+            makeListFromProjects(); //Refresh project list.
         });
         li.appendChild(btn);
         li.appendChild(showOptionsBtn(Project.projects[project]));
-        project_list.appendChild(li);        
+        project_list.appendChild(li);
     }
     const selector = `li[data-project-title="${getCurrentProjectTitle()}"]`;
     const selectedProjectLi = document.querySelector(selector);
     selectedProjectLi.classList.add('current-project');
 }
 
+//Attach a button that displays the task count, which also acts as a button for more options.
 function showOptionsBtn(project) {   
     const btn = document.createElement('button');
     btn.setAttribute('type', 'button');
     btn.classList.add('show-options-project');
     btn.setAttribute('data-project-title', project.title);
 
-    const numberOfTasks = Object.keys(project.tasks).length;
+    //Display the number of tasks in user project.
+    const numberOfTasks = getTaskCountOfProject(project);
     btn.textContent = numberOfTasks;
 
-    const optionsBox = renderOptionsBox(project);
-
+    //Remove display of task count, to make space for an option button instead.
     btn.addEventListener("mouseenter", e => {
         btn.textContent = "";
     });
 
+    //Resumes display of task count, when mouse leaves the button.
     btn.addEventListener("mouseleave", e => {
         btn.textContent = numberOfTasks;
     });
 
+    //When clicked, render an option box/menu
     btn.addEventListener('click', e => {
+        const optionsBox = renderOptionsBox(project);
         btn.classList.add('clicked');
         btn.appendChild(optionsBox);
     });
@@ -63,8 +67,8 @@ function renderOptionsBox(project) {
     box.classList.add('options-box-project');
     box.setAttribute('data-project-title', project.title);
 
-    box.appendChild(deleteProjectBtn(project));
-    box.appendChild(renameProjectBtn(project));
+    box.appendChild(deleteProjectBtn(project)); //Delete button
+    box.appendChild(renameProjectBtn(project)); //Rename button
 
     return box;
 }
@@ -76,7 +80,7 @@ function deleteProjectBtn(project) {
     btn.setAttribute('data-project-title', project.title);
     btn.textContent = "Delete";
 
-    btn.addEventListener('click', e => {
+    btn.addEventListener('click', () => {
         Project.deleteProject(project);
         makeListFromProjects();
         loadCurrentProject();
@@ -93,4 +97,8 @@ function renameProjectBtn(project) {
     btn.textContent = "Rename";
 
     return btn;
+}
+
+function getTaskCountOfProject(project) {
+    return Object.keys(project.tasks).length;
 }

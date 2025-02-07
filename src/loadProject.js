@@ -15,8 +15,7 @@ export function loadCurrentProject() {
     if( Object.keys(projects).length === 0 ) return; //Do nothing if empty projects.
 
     //Load the filters when non-user-created projects are opened.
-    if(currentProjectTitle === "All Tasks" 
-        || currentProjectTitle === "Today" 
+    if(currentProjectTitle === "All Tasks" || currentProjectTitle === "Today" 
         || currentProjectTitle === "Overdue") {
         taskFilters[currentProjectTitle]();
         return;
@@ -133,7 +132,8 @@ function filterHandler(e) {
     const button = e.target;
     if(button.tagName !== "BUTTON") return;
 
-    setCurrentProjectTitle(button.id.replace("-", " "));
+    const currentProjectTitle = button.getAttribute('data-project-title');
+    setCurrentProjectTitle(currentProjectTitle.replace("-", " "));
     loadCurrentProject();
 }
 

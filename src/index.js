@@ -8,12 +8,14 @@ import { loadCurrentProject, setCurrentProjectTitle } from "./loadProject.js";
 import { makeTaskForm } from "./task-form.js";
 import { populateProjects } from "./reset-projects.js";
 import { makeListFromProjects } from "./project-selector.js";
+import { displayFilterTaskCounts } from "./filter-task-counts.js";
 
 console.log("Script entry point working");
 populateProjects();
 
 makeListFromProjects();
 loadCurrentProject();
+displayFilterTaskCounts();
 
 const addProject_btn = document.querySelector('button.add-project');
 addProject_btn.addEventListener('click', e => {
@@ -27,4 +29,3 @@ addProject_btn.addEventListener('click', e => {
 
 const showTaskForm_btn = document.querySelector('button.show-task-form');
 showTaskForm_btn.addEventListener('click', makeTaskForm);
-
