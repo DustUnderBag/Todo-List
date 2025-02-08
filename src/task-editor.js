@@ -1,7 +1,9 @@
 import { format } from "date-fns";
-import { updateContentPanel, getCurrentProjectTitle } from "./loadProject";
+import { updateContentPanel } from "./loadProject";
 import { Project, parseProjectsFromLocalStorage, updateProjectsInLocalStorage } from "./project";
 import { Task } from "./task";
+import { makeListFromProjects } from "./project-selector";
+import { displayFilterTaskCounts } from "./filter-selector";
 
 //Search for all editor's inputs at once, returned in an object.
 const cache_editorInputs = () => {
@@ -60,6 +62,12 @@ export function makeTaskEditor(task) {
     save_btn.setAttribute('type', 'button');
     save_btn.addEventListener('click', (e) => {
         saveTaskChanges(task);
+
+        //Refresh task counts of filters and projects.
+        makeListFromProjects();
+        displayFilterTaskCounts();
+
+        //Load filter if project title is a filter.
         updateContentPanel();
     });
 

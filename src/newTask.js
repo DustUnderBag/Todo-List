@@ -21,6 +21,5 @@ export function makeNewTask() {
     dueDate.value = "";
     priority.value = "";
 
-    makeListFromProjects();
     return newTask;
 }

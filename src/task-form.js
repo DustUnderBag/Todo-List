@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import { makeNewTask } from "./newTask";
 import { getCurrentProjectTitle, updateContentPanel, isFilter } from "./loadProject";
 import { Project } from "./project";
+import { makeListFromProjects } from "./project-selector.js";
 import { displayFilterTaskCounts } from "./filter-selector.js";
 
 const taskForm_modal = document.querySelector('dialog.task-form-modal');
@@ -50,8 +51,14 @@ export function makeTaskForm() {
 
 function newTaskHandler(e) {
     makeNewTask();
-    updateContentPanel();
+
+    //Refresh task counts of filters and projects.
+    makeListFromProjects();
     displayFilterTaskCounts();
+
+    //Load filter if project title is a filter.
+    updateContentPanel();
+    
     closeTaskForm();
 }
 
