@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { makeNewTask } from "./newTask";
-import { loadCurrentProject, getCurrentProjectTitle, isFilter } from "./loadProject";
+import { getCurrentProjectTitle, updateContentPanel, isFilter } from "./loadProject";
 import { Project } from "./project";
 import { displayFilterTaskCounts } from "./filter-selector.js";
 
@@ -50,7 +50,7 @@ export function makeTaskForm() {
 
 function newTaskHandler(e) {
     makeNewTask();
-    loadCurrentProject();
+    updateContentPanel();
     displayFilterTaskCounts();
     closeTaskForm();
 }

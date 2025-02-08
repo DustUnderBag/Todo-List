@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { loadCurrentProject, getCurrentProjectTitle } from "./loadProject";
+import { updateContentPanel, getCurrentProjectTitle } from "./loadProject";
 import { Project, parseProjectsFromLocalStorage, updateProjectsInLocalStorage } from "./project";
 import { Task } from "./task";
 
@@ -60,14 +60,14 @@ export function makeTaskEditor(task) {
     save_btn.setAttribute('type', 'button');
     save_btn.addEventListener('click', (e) => {
         saveTaskChanges(task);
-        loadCurrentProject();
+        updateContentPanel();
     });
 
     const cancel_btn = document.createElement('button');
     cancel_btn.classList.add('cancel-task');
     cancel_btn.textContent = "Cancel";
     cancel_btn.setAttribute('type', 'button');
-    cancel_btn.addEventListener('click',  loadCurrentProject);
+    cancel_btn.addEventListener('click',  updateContentPanel);
 
     editor.append(save_btn);
     editor.append(cancel_btn);

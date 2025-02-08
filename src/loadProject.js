@@ -10,7 +10,21 @@ const projectTitle = document.querySelector('h1.project-title');
 
 let currentProjectTitle = "Home";
 
-export function loadCurrentProject() {
+export function updateContentPanel() {
+    if(isFilter(currentProjectTitle)) {
+        loadTaskFilter(currentProjectTitle);
+    } else {
+        loadCurrentProject();
+    }
+}
+
+export function isFilter(project_title) {
+    return ( project_title === "All Tasks" || 
+        project_title === "Today" || 
+        project_title === "Overdue");
+}
+
+function loadCurrentProject() {
     const projects = parseProjectsFromLocalStorage();
     content.textContent = "";
     if( Object.keys(projects).length === 0 ) return; //Do nothing if empty projects.
@@ -96,11 +110,7 @@ function completeBtnHandler(e) {
     displayFilterTaskCounts();
 
     //Load filter if project title is a filter.
-    if(isFilter(currentProjectTitle)) {
-        loadTaskFilter(currentProjectTitle);
-    } else {
-        loadCurrentProject();
-    }
+    updateContentPanel();
 }
 
 function makeEditBtn(task) {
@@ -123,13 +133,8 @@ function editBtnHandler(e) {
 
     const task = taskFolder.find( task => task.uuid === uuid);
     
-    loadCurrentProject();
-    makeTaskEditor(task);
-}
+    //Load filter if project title is a filter.
+    updateContentPanel();
 
-export function isFilter(project_title) {
-    if( project_title === "All Tasks" || project_title === "Today" || project_title === "Overdue") {
-        return true;
-    }
-    return false;
+    makeTaskEditor(task);
 }

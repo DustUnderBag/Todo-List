@@ -4,7 +4,7 @@ import "./styles/sidebar.css";
 import "./styles/task-form-modal.css";
 
 import { Project } from "./project.js";
-import { getCurrentProjectTitle, loadCurrentProject, setCurrentProjectTitle } from "./loadProject.js";
+import { getCurrentProjectTitle, updateContentPanel, setCurrentProjectTitle } from "./loadProject.js";
 import { makeTaskForm } from "./task-form.js";
 import { populateProjects } from "./reset-projects.js";
 import { makeListFromProjects, highlightProjectSelector } from "./project-selector.js";
@@ -15,7 +15,7 @@ populateProjects();
 
 makeListFromProjects();
 highlightProjectSelector(getCurrentProjectTitle());
-loadCurrentProject();
+updateContentPanel();
 displayFilterTaskCounts();
 
 const addProject_btn = document.querySelector('button.add-project');
@@ -25,7 +25,7 @@ addProject_btn.addEventListener('click', e => {
     
     makeListFromProjects();
     setCurrentProjectTitle(title);
-    loadCurrentProject();
+    updateContentPanel();
 });
 
 const showTaskForm_btn = document.querySelector('button.show-task-form');

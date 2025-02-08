@@ -1,5 +1,5 @@
 import { Project } from "./project";
-import { loadCurrentProject, setCurrentProjectTitle, getCurrentProjectTitle } from "./loadProject";
+import { updateContentPanel, setCurrentProjectTitle, getCurrentProjectTitle } from "./loadProject";
 
 const project_list = document.querySelector('ul.project-window');
 
@@ -22,7 +22,7 @@ export function makeListFromProjects() {
             deselectProjectSelector(oldProjectTitle);
             
             setCurrentProjectTitle(e.target.id);
-            loadCurrentProject();
+            updateContentPanel();
 
             //Highlight selector of the loaded project.
             highlightProjectSelector(getCurrentProjectTitle());
@@ -97,7 +97,7 @@ function deleteProjectBtn(project) {
     btn.addEventListener('click', () => {
         Project.deleteProject(project);
         makeListFromProjects();
-        loadCurrentProject();
+        updateContentPanel();
     });
 
     return btn;
