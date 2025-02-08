@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import { makeNewTask } from "./newTask";
 import { loadCurrentProject, getCurrentProjectTitle, isFilter } from "./loadProject";
 import { Project } from "./project";
-import { displayFilterTaskCounts } from "./filter-task-counts.js";
+import { displayFilterTaskCounts } from "./filter-selector.js";
 
 const taskForm_modal = document.querySelector('dialog.task-form-modal');
 

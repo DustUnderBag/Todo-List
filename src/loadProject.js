@@ -32,7 +32,6 @@ export function getCurrentProjectTitle() {
 
 export function setCurrentProjectTitle(project_title) {
     currentProjectTitle = project_title.replace("-", " ");
-    console.log("Set project to " + currentProjectTitle);
 }
 
 export function generateTaskItem(task) {

@@ -5,7 +5,6 @@ const project_list = document.querySelector('ul.project-window');
 
 export function makeListFromProjects() {    
     project_list.textContent = "";
-    console.log(getCurrentProjectTitle());
     
     for(const project in Project.projects) {
         const li = document.createElement('li');
@@ -43,7 +42,6 @@ export function highlightProjectSelector(project_title) {
 export function deselectProjectSelector(project_title) {
     const selector = `li[data-project-title="${project_title}"]`;
     const selectedProjectLi = document.querySelector(selector);
-    console.log(selector);
     selectedProjectLi.classList.remove('current-project');
 }
 

@@ -8,7 +8,7 @@ import { getCurrentProjectTitle, loadCurrentProject, setCurrentProjectTitle } fr
 import { makeTaskForm } from "./task-form.js";
 import { populateProjects } from "./reset-projects.js";
 import { makeListFromProjects, highlightProjectSelector } from "./project-selector.js";
-import { displayFilterTaskCounts } from "./filter-task-counts.js";
+import { displayFilterTaskCounts } from "./filter-selector.js";
 
 console.log("Script entry point working");
 populateProjects();

@@ -6,6 +6,14 @@ import { highlightProjectSelector, deselectProjectSelector } from "./project-sel
 const content = document.querySelector('div.content');
 const projectTitle = document.querySelector('h1.project-title');
 
+export function displayFilterTaskCounts() {
+    for( let filterName in filterTaskCounts) {
+        let processed_filterName = filterName;
+        const taskCount_span = document.querySelector(`[data-project-title = "${processed_filterName}"] + span`);
+        taskCount_span.textContent = filterTaskCounts[filterName]();
+    }
+}
+
 function filterHandler(e) {
     e.stopPropagation();
 
@@ -20,7 +28,6 @@ function filterHandler(e) {
 
     const newProjectTitle = button.getAttribute('data-project-title');
     setCurrentProjectTitle(newProjectTitle);
-    console.log(newProjectTitle);
     loadTaskFilters[newProjectTitle.replace("-", " ")]();
 
     //Highlight selector of the loaded project.
@@ -64,13 +71,7 @@ const loadTaskFilters = {
 const taskFilters_container = document.querySelector('ul#task-filters');
 taskFilters_container.addEventListener('click', filterHandler);
 
-export function displayFilterTaskCounts() {
-    for( let filterName in filterTaskCounts) {
-        let processed_filterName = filterName;
-        const taskCount_span = document.querySelector(`[data-project-title = "${processed_filterName}"] + span`);
-        taskCount_span.textContent = filterTaskCounts[filterName]();
-    }
-}
+
 
 const filterTaskCounts = {
     "All Tasks"() {
