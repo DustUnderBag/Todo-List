@@ -2,6 +2,8 @@ import { Task } from "./task.js";
 import { Project, parseProjectsFromLocalStorage } from "./project.js";
 import { getFormattedDate } from "./formatDate.js";
 import { makeTaskEditor } from "./task-editor.js";
+import { displayFilterTaskCounts, loadTaskFilter } from "./filter-selector.js";
+import { makeListFromProjects } from "./project-selector.js";
 
 const content = document.querySelector('div.content');
 const projectTitle = document.querySelector('h1.project-title');
@@ -88,9 +90,18 @@ function completeBtnHandler(e) {
 
     const task = taskFolder.find( task => task.uuid === uuid);
     Task.deleteTask(task);
-    loadCurrentProject();
-}
 
+    //Refresh task counts of filters and projects.
+    makeListFromProjects();
+    displayFilterTaskCounts();
+
+    //Load filter if project title is a filter.
+    if(isFilter(currentProjectTitle)) {
+        loadTaskFilter(currentProjectTitle);
+    } else {
+        loadCurrentProject();
+    }
+}
 
 function makeEditBtn(task) {
     const edit_btn = document.createElement('button');

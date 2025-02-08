@@ -14,27 +14,34 @@ export function displayFilterTaskCounts() {
     }
 }
 
+const taskFilters_container = document.querySelector('ul#task-filters');
+taskFilters_container.addEventListener('click', filterHandler);
+
 function filterHandler(e) {
     e.stopPropagation();
 
     const button = e.target;
     if(button.tagName !== "BUTTON") return;
 
+    const filter_name = button.getAttribute('data-project-title');
+    loadTaskFilter(filter_name);
+}
+
+export function loadTaskFilter(filter_name) {
     content.textContent = "";
     
     //Deselect previous project selector.
     const oldProjectTitle = getCurrentProjectTitle();
     deselectProjectSelector(oldProjectTitle);
 
-    const newProjectTitle = button.getAttribute('data-project-title');
-    setCurrentProjectTitle(newProjectTitle);
-    loadTaskFilters[newProjectTitle.replace("-", " ")]();
+    setCurrentProjectTitle(filter_name);
+    taskFilterLoaders[filter_name.replace("-", " ")]();
 
     //Highlight selector of the loaded project.
-    highlightProjectSelector(newProjectTitle);
+    highlightProjectSelector(filter_name);
 }
 
-const loadTaskFilters = {
+const taskFilterLoaders = { //loadTaskFilters
     "All Tasks"() {
         projectTitle.textContent = "All Tasks";
 
@@ -67,11 +74,6 @@ const loadTaskFilters = {
         }
     },
 };
-
-const taskFilters_container = document.querySelector('ul#task-filters');
-taskFilters_container.addEventListener('click', filterHandler);
-
-
 
 const filterTaskCounts = {
     "All Tasks"() {
