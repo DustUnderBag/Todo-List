@@ -10,6 +10,10 @@
     --dropdown-clr: #303030;
 
     --task-width: 600px;
+
+    /*Colors representing priorities*/
+    --priority-brdr-clr: #d7d6d6;
+    --priority-bg-clr: #e1dfdf3f;
 }
 
 dialog.task-form-modal {
@@ -70,6 +74,47 @@ form.task-editor {
 .task-form #task-description,
 .task-editor #task-description-edit {
     color: var(--grey-font-clr);
+}
+
+
+select#task-priority {
+    color: var(--priority-bg-clr);
+
+    &:has(option:checked[value="0"]) {
+        --priority-bg-clr: #d7d6d6;
+    }
+
+    &:has(option:checked[value="1"]) {
+        --priority-bg-clr: #5189d1;
+    }
+
+    &:has(option:checked[value="2"]) {
+        --priority-bg-clr: #d1c251;
+    }
+
+    &:has(option:checked[value="3"]) {
+        --priority-bg-clr: #d15151;
+    }
+}
+
+select#task-priority > option {
+    color: var(--priority-bg-clr);
+
+    &[value="0"] {
+        --priority-bg-clr: #d7d6d6;
+    }
+
+    &[value="1"] {
+        --priority-bg-clr: #5189d1;
+    }
+
+    &[value="2"] {
+        --priority-bg-clr: #d1c251;
+    }
+
+    &[value="3"] {
+        --priority-bg-clr: #d15151;
+    }
 }
 
 .task-form .multi-inputs,

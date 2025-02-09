@@ -30,7 +30,7 @@ export function makeTaskForm() {
     //Revert priority to default.
     const defaultPriority = document.querySelector('option[value="0"]');
     defaultPriority.selected = true;
-
+    
     //Populate project select with options.
     const project_select = document.querySelector('select#task-project');
     project_select.textContent = "";

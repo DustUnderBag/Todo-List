@@ -7,8 +7,8 @@
     --task-width: 600px;
 
     /*Colors representing priorities*/
-    --priority-3-brdr-clr: #d7d6d6;
-    --priority-3-bg-clr: #e1dfdf3f;;
+    --priority-brdr-clr: #d7d6d6;
+    --priority-bg-clr: #e1dfdf3f;
 }
 
 body {
@@ -88,8 +88,8 @@ button.task-complete {
     width: 1rem;
     aspect-ratio: 1/1;
     border-radius: 50%;
-    border: 2.4px solid var(--priority-3-brdr-clr);
-    background-color: var(--priority-3-bg-clr);
+    border: 2.4px solid var(--priority-brdr-clr);
+    background-color: var(--priority-bg-clr);
 
     position: relative;
 
@@ -115,18 +115,18 @@ button.task-complete {
 }
 
 .task-wrapper.priority-1 > button.task-complete {
-    --priority-3-brdr-clr: #5189d1;
+    --priority-brdr-clr: #5189d1;
     --priority-3-bg-clr: #4cb8e33f;
 }
 
 .task-wrapper.priority-2 > button.task-complete {
-    --priority-3-brdr-clr: #d1c251;
-    --priority-3-bg-clr: #e3ca4c3f;
+    --priority-brdr-clr: #d1c251;
+    --priority-bg-clr: #e3ca4c3f;
 }
 
 .task-wrapper.priority-3 > button.task-complete {
-    --priority-3-brdr-clr: #d15151;
-    --priority-3-bg-clr: #e34c4c3f;
+    --priority-brdr-clr: #d15151;
+    --priority-bg-clr: #e34c4c3f;
 }
 
 /*Task Editor button*/
