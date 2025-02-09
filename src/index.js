@@ -18,15 +18,40 @@ highlightProjectSelector(getCurrentProjectTitle());
 updateContentPanel();
 displayFilterTaskCounts();
 
+const showProjectInput_btn = document.querySelector('button#show-project-input');
+const projectTitle_input = document.querySelector('input#project-title');
 const addProject_btn = document.querySelector('button.add-project');
-addProject_btn.addEventListener('click', e => {
-    const title = document.querySelector('input#project-title').value;
-    Project.addProject(new Project(title));
-    
+const cancelProject_btn = document.querySelector('button.cancel-project');
+
+showProjectInput_btn.addEventListener('click', showProjectInput);
+cancelProject_btn.addEventListener('click', closeProjectInput);
+
+addProject_btn.addEventListener('click', e => {    
+    Project.addProject(new Project(projectTitle_input.value) );
+    projectTitle_input.value = "";
+    closeProjectInput();
+
     makeListFromProjects();
-    setCurrentProjectTitle(title);
+    setCurrentProjectTitle(projectTitle_input.value);
     updateContentPanel();
 });
+
+function showProjectInput() {
+    showProjectInput_btn.style.display = "none";
+    projectTitle_input.style.display = "inline";
+    projectTitle_input.focus();
+    addProject_btn.style.display = "inline";
+    cancelProject_btn.style.display = "inline";
+}
+
+function closeProjectInput() {
+    projectTitle_input.value = "";
+
+    showProjectInput_btn.style.display = "flex";
+    projectTitle_input.style.display = "none";
+    addProject_btn.style.display = "none";
+    cancelProject_btn.style.display = "none";
+}
 
 const showTaskForm_btn = document.querySelector('button.show-task-form');
 showTaskForm_btn.addEventListener('click', () => {

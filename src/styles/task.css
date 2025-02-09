@@ -10,7 +10,7 @@
 body {
     height: 100vh;
     display: grid;
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 300px 1fr;
     grid-template-areas: "sidebar-panel project-panel";
     color: var(--font-clr);
     font-family:  system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;

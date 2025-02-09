@@ -26,17 +26,18 @@
             </ul>
         </div>
 
-        <form class="project-form">
-            <p class="form-row">
-                <label for="project-title">Title</label>
+        <h2 class="project-list-title">My projects</h2>
+        <div class="add-project-form">
+            <div>
                 <input type="text" id="project-title" name="project-title" placeholder="Project name">
-            </p>
-            <button class="add-project" type="button">New Project</button>
-        </form>
+                <button class="add-project" type="button"></button>
+                <button class="cancel-project" type="button"></button>
+            </div>
+
+            <button type="button" id="show-project-input"><span>+</span>Add new project</button>
+        </div>
         
-        <ul class="project-window">
-            Projects
-        </ul>
+        <ul class="project-window"></ul>
     </nav>
 
     <main class="project-panel">

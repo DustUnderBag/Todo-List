@@ -115,10 +115,10 @@ input#task-title-edit {
     line-height: 1;
 
     &.cancel-task {
-        background-color: rgb(71, 71, 71);
+        background-color: #474747;
     }
     &.add-task,
     &.save-task {
-        background-color: rgb(135, 50, 50);
+        background-color: #873232;
     }
 }
