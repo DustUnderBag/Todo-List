@@ -28,13 +28,16 @@ dialog.task-form-modal {
     }
 }  
 
+form.task-form {
+    width: var(--task-width);
+}
+
 form.task-form,
 form.task-editor {
     margin-inline: auto;
     margin-top: 10%;
     padding: 1.3rem 1.1rem;
 
-    width: var(--task-width);
     color: var(--font-clr);
     background-color: var(--sidebar-clr);
     font-size: var(--noral-font-size);
@@ -45,15 +48,13 @@ form.task-editor {
     box-shadow: 0 0 3px 0px var(--grey-font-clr);
 }
 
-form.task-editor {
+.task-wrapper:has(form.task-editor) {
     display: block;
 }
 
 .task-form input[type="text"],
 .task-editor input[type="text"] {
-    width: 100%;
     background-color: transparent;
-
     &:user-invalid {
         border: 1px solid #983a3a;
     }
