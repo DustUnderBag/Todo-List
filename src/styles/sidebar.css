@@ -33,7 +33,7 @@ nav.sidebar-panel > div.first-row {
     }
 }
 
-button#sidebar-toggle {
+button.sidebar-toggle {
     width: 40px;
     aspect-ratio: 1/1;
     padding: 0;

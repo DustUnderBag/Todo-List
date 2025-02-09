@@ -60,3 +60,13 @@ showTaskForm_btn.addEventListener('click', () => {
     makeTaskForm();
     updateContentPanel();
 });
+
+const sidebar_toggles = document.querySelectorAll('button.sidebar-toggle');
+sidebar_toggles.forEach( toggle => {
+    toggle.addEventListener('click', toggleSidebar);
+});
+
+function toggleSidebar() {
+    const sidebar = document.querySelector('nav.sidebar-panel');
+    sidebar.classList.toggle('collapsed');
+}
