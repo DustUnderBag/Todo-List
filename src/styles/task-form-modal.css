@@ -18,7 +18,8 @@ dialog.task-form-modal {
     background: none;
 }  
 
-form.task-form {
+form.task-form,
+form.task-editor {
     margin-inline: auto;
     margin-top: 10%;
     padding: 1.3rem 1.1rem;
@@ -34,46 +35,54 @@ form.task-form {
     box-shadow: 0 0 3px 0px var(--grey-font-clr);
 }
 
-.task-form input[type="text"] {
+.task-form input[type="text"],
+.task-editor input[type="text"] {
     width: 100%;
     background-color: transparent;
 }
 
-
-
 .task-form input,
 .task-form select,
-.task-form option {
+.task-form option,
+.task-editor input,
+.task-editor select,
+.task-editor option {
     border: none;
     outline: none;
     color: #ededed;
     border-radius: 4px;
 }
 
-.task-form #task-description {
+.task-form #task-description,
+.task-editor #task-description-edit {
     color: var(--grey-font-clr);
 }
 
-.multi-inputs {
+.task-form .multi-inputs,
+.task-editor .multi-inputs {
     margin-top: 1rem;
     display: flex;
     gap: 24px;
 }
 
 .task-form select,
-input[type="date"] {
+.task-form input[type="date"],
+.task-editor select,
+.task-editor input[type="date"] {
     background-color: var(--dropdown-clr);
     height: var(--input-height);
     width: var(--input-width);
     padding-left: 0.6rem;
 }
 
-input#task-title {
+input#task-title,
+input#task-title-edit {
     font-weight: 900;
     font-size: var(--title-font-size);
 }
 
-.task-form .form-row:last-of-type {
+.task-form > .form-row:last-of-type,
+.task-editor > .form-row:last-of-type {
     margin-top: 1.4rem;
     padding-top: 1rem;
     border-top: 1px solid var(--grey-font-clr);
@@ -88,7 +97,8 @@ input#task-title {
     }
 }
 
-.task-form button {
+.task-form button,
+.task-editor button {
     border: none;
     outline: none;
     width: 85px;
@@ -96,14 +106,13 @@ input#task-title {
     border-radius: 2px;
     color: #ffffff;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    line-height: 1;
 
     &.cancel-task {
         background-color: rgb(71, 71, 71);
     }
-    &.add-task {
+    &.add-task,
+    &.save-task {
         background-color: rgb(135, 50, 50);
     }
 }

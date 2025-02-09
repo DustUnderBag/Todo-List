@@ -29,4 +29,7 @@ addProject_btn.addEventListener('click', e => {
 });
 
 const showTaskForm_btn = document.querySelector('button.show-task-form');
-showTaskForm_btn.addEventListener('click', makeTaskForm);
+showTaskForm_btn.addEventListener('click', () => {
+    makeTaskForm();
+    updateContentPanel();
+});

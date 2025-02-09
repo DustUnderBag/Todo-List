@@ -44,17 +44,34 @@ function projectsToArray() {
 export function makeTaskEditor(task) {
     const task_wrapper = document.querySelector(`.task-wrapper[ data-task-uuid="${task.uuid}" ]`);
     task_wrapper.textContent = "";
+    task_wrapper.style.border = "none";
    
     const editor = document.createElement('form');
     editor.classList.add('task-editor');
     editor.setAttribute('data-task-uuid', task.uuid);
     editor.setAttribute('data-task-projectTitle', task.projectTitle);
 
-    editor.append( makeTextInput("Task title", "task-title-edit") );
-    editor.append( makeTextInput("Description", "task-description-edit") );
-    editor.append( makeDateInput("task-dueDate-edit") );
-    editor.append( makeDropdown("Priority", "task-priority-edit", priorities) );
-    editor.append( makeDropdown("Project", "task-project-edit", projectsToArray()) );
+    //Title
+    const formRow_title = makeFormRow();
+    formRow_title.appendChild( makeTextInput("Task title", "task-title-edit") );
+    editor.appendChild( formRow_title );
+
+    //Description
+    const formRow_description = makeFormRow();
+    formRow_description.appendChild( makeTextInput("Description", "task-description-edit") );
+    editor.appendChild( formRow_description );
+
+    //dueDate and priorities inside one form-row
+    const multiFormRow = makeFormRow();
+    multiFormRow.classList.add('multi-inputs');
+    multiFormRow.appendChild( makeDateInput("task-dueDate-edit") );
+    multiFormRow.appendChild( makeDropdown("task-priority-edit", priorities) );
+    editor.appendChild(multiFormRow);
+
+    //project, save button & cancel button inside one form-row
+    const finalFormRow = makeFormRow();
+    finalFormRow.appendChild( makeDropdown("task-project-edit", projectsToArray()) )
+    editor.appendChild( finalFormRow );
 
     const save_btn = document.createElement('button');
     save_btn.classList.add('save-task');
@@ -77,11 +94,10 @@ export function makeTaskEditor(task) {
     cancel_btn.setAttribute('type', 'button');
     cancel_btn.addEventListener('click',  updateContentPanel);
 
-    editor.append(save_btn);
-    editor.append(cancel_btn);
+    finalFormRow.appendChild(cancel_btn);
+    finalFormRow.appendChild(save_btn);
 
-    task_wrapper.append(editor);
-
+    task_wrapper.appendChild(editor);
     prefill(task);
 }
 
@@ -102,25 +118,23 @@ function prefill(task) {
 
 }
 
-function makeTextInput(name, inputId) {
-    const wrapper = document.createElement('p');
-    wrapper.classList.add('form-row');
+function makeFormRow() {
+    const formRow = document.createElement('p');
+    formRow.classList.add('form-row');
+    return formRow;
+}
 
+function makeTextInput(name, inputId) {
     const input = document.createElement('input');
     input.setAttribute('placeholder', name);
     input.setAttribute('type', "text");
     input.setAttribute('id', inputId);
     input.setAttribute('name', inputId);
 
-    wrapper.append(input);
-
-    return wrapper;
+    return input;
 }
 
 function makeDateInput(inputId) {
-    const wrapper = document.createElement('p');
-    wrapper.classList.add('form-row');
-
     const input = document.createElement('input');
     input.setAttribute('type', "date");
     input.setAttribute('id', inputId);
@@ -129,19 +143,10 @@ function makeDateInput(inputId) {
     const today = format( new Date(), 'yyyy-MM-dd' );
     input.setAttribute('min', today);
 
-    wrapper.append(input);
-
-    return wrapper;
+    return input;
 }
 
-function makeDropdown(name, inputId, options_arr) {
-    const wrapper = document.createElement('p');
-    wrapper.classList.add('form-row');
-
-    const label = document.createElement('label');
-    label.setAttribute('id', inputId);
-    label.textContent = name;
-
+function makeDropdown(inputId, options_arr) {
     const dropdown = document.createElement('select');
     dropdown.setAttribute('id', inputId);
     dropdown.setAttribute('name', inputId);
@@ -153,11 +158,8 @@ function makeDropdown(name, inputId, options_arr) {
         dropdown.appendChild(option);
     });
 
-    wrapper.appendChild(label);
-    wrapper.appendChild(dropdown);
-    return wrapper;
+    return dropdown;
 }
-
 
 function saveTaskChanges(task) {
     const inputs = cache_editorInputs();
