@@ -32,6 +32,8 @@ addProject_btn.addEventListener('click', e => {
     closeProjectInput();
 
     makeListFromProjects();
+    highlightProjectSelector(getCurrentProjectTitle());
+
     setCurrentProjectTitle(projectTitle_input.value);
     updateContentPanel();
 });
