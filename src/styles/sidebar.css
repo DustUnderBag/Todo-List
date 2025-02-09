@@ -13,25 +13,33 @@
     --item-border-radius: 4px;
 }
 
+button {
+    cursor: pointer;
+}
+
 nav.sidebar-panel {
     padding: 24px 16px;
 }
 
-nav.sidebar-panel > div > h1 {
-    font-size: 2rem;
+nav.sidebar-panel > div.first-row {
+    display: flex;
+    justify-content: space-between;
+
     margin-left: 6px;
     margin-bottom: 0.5rem;
+
+    & > h1 {
+        font-size: 2rem;
+    }
 }
 
 button#sidebar-toggle {
+    width: 40px;
+    aspect-ratio: 1/1;
     padding: 0;
     background: none;
     border: none;
     outline: none;
-    
-    &:hover {
-        box-shadow: 0 0 4px 0 red;
-    }
 }
 
 nav.sidebar-panel > h2 {
