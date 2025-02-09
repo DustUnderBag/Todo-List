@@ -17,8 +17,14 @@ nav.sidebar-panel {
     padding: 24px 16px;
 }
 
+nav.sidebar-panel > h1 {
+    font-size: 2rem;
+    margin-left: 6px;
+    margin-bottom: 0.5rem;
+}
+
 .sidebar-panel ul {
-    margin-top: 16px;
+    margin-top: 0.5rem;
     list-style: none;
     padding: 0;
 }
@@ -154,7 +160,6 @@ button.show-task-form {
     background: none;
 
     width: 100%;
-    padding-block: var(--item-padding-block);
     border-radius: var(--item-border-radius);
 
     display: flex;    

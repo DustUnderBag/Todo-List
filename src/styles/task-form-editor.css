@@ -8,6 +8,8 @@
     --project-clr: #1e1e1e;
     --font-clr: #fff;
     --dropdown-clr: #303030;
+
+    --task-width: 600px;
 }
 
 dialog.task-form-modal {
@@ -24,7 +26,7 @@ form.task-editor {
     margin-top: 10%;
     padding: 1.3rem 1.1rem;
 
-    width: 600px;
+    width: var(--task-width);
     color: var(--font-clr);
     background-color: var(--sidebar-clr);
     font-size: var(--noral-font-size);
@@ -33,6 +35,10 @@ form.task-editor {
     border-radius: 5px;
 
     box-shadow: 0 0 3px 0px var(--grey-font-clr);
+}
+
+form.task-editor {
+    display: block;
 }
 
 .task-form input[type="text"],
