@@ -69,4 +69,7 @@ sidebar_toggles.forEach( toggle => {
 function toggleSidebar() {
     const sidebar = document.querySelector('nav.sidebar-panel');
     sidebar.classList.toggle('collapsed');
+
+    const secondary_toggle = document.querySelector('main button.sidebar-toggle');
+    secondary_toggle.classList.toggle('hidden');
 }
