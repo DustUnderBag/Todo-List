@@ -53,7 +53,9 @@ export function makeTaskEditor(task) {
 
     //Title
     const formRow_title = makeFormRow();
-    formRow_title.appendChild( makeTextInput("Task title", "task-title-edit") );
+    const title_input = makeTextInput("Task title", "task-title-edit");
+    title_input.required = true;
+    formRow_title.appendChild( title_input );
     editor.appendChild( formRow_title );
 
     //Description
@@ -78,6 +80,11 @@ export function makeTaskEditor(task) {
     save_btn.textContent = "Save";
     save_btn.setAttribute('type', 'button');
     save_btn.addEventListener('click', (e) => {
+        //Validate task title.
+        if(cache_editorInputs().title_edit.value.length < 1) {
+            alert("Title is required.");
+            return;
+        }
         saveTaskChanges(task);
 
         //Refresh task counts of filters and projects.
@@ -91,7 +98,7 @@ export function makeTaskEditor(task) {
     const cancel_btn = document.createElement('button');
     cancel_btn.classList.add('cancel-task');
     cancel_btn.textContent = "Cancel";
-    cancel_btn.setAttribute('type', 'button');
+    cancel_btn.setAttribute('type', 'reset');
     cancel_btn.addEventListener('click',  updateContentPanel);
 
     finalFormRow.appendChild(cancel_btn);

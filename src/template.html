@@ -46,9 +46,9 @@
     </main>
 
     <dialog class="task-form-modal">
-        <form class="task-form">
+        <form class="task-form" method="post">
             <p class="form-row">
-                <input type="text" placeholder="Task title" id="task-title" name="task-title">
+                <input type="text" placeholder="Task title" id="task-title" name="task-title" required>
             </p>
             <p class="form-row">
                 <input type="text" placeholder="Description" id="task-description" name="task-description">
@@ -71,7 +71,7 @@
             </p>
             <p class="form-row">
                 <select name="task-project" id="task-project"></select>
-                <button class="cancel-task" type="button">Cancel</button>
+                <button class="cancel-task" type="reset">Cancel</button>
                 <button class="add-task" type="button">Add task</button>
             </p>
         </form>

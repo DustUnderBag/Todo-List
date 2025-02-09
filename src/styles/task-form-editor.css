@@ -18,6 +18,10 @@ dialog.task-form-modal {
     width: 100%;
     height: 100vh;
     background: none;
+
+    &::backdrop {
+        background: #ffffff0a;
+    }
 }  
 
 form.task-form,
@@ -45,6 +49,10 @@ form.task-editor {
 .task-editor input[type="text"] {
     width: 100%;
     background-color: transparent;
+
+    &:user-invalid {
+        border: 1px solid #983a3a;
+    }
 }
 
 .task-form input,

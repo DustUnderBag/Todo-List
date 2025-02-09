@@ -50,6 +50,12 @@ export function makeTaskForm() {
 }
 
 function newTaskHandler(e) {
+    //Validate required input: task title
+    if( !validateInput(document.querySelector('input#task-title')) ) {
+        alert("Task title is required.");
+        return;
+    }
+
     makeNewTask();
 
     //Refresh task counts of filters and projects.
@@ -82,4 +88,11 @@ export function preSelectProject() {
 
 function closeTaskForm() {
     taskForm_modal.close();
+}
+
+function validateInput(input) {
+    if(input.value.length < 1) {
+        return false;
+    }
+    return true;
 }
