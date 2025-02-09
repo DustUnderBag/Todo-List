@@ -17,10 +17,21 @@ nav.sidebar-panel {
     padding: 24px 16px;
 }
 
-nav.sidebar-panel > h1 {
+nav.sidebar-panel > div > h1 {
     font-size: 2rem;
     margin-left: 6px;
     margin-bottom: 0.5rem;
+}
+
+button#sidebar-toggle {
+    padding: 0;
+    background: none;
+    border: none;
+    outline: none;
+    
+    &:hover {
+        box-shadow: 0 0 4px 0 red;
+    }
 }
 
 nav.sidebar-panel > h2 {
