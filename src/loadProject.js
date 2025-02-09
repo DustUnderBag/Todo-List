@@ -54,6 +54,9 @@ export function generateTaskItem(task) {
     const taskWrapper = document.createElement('div');
     taskWrapper.classList.add('task-wrapper');
     taskWrapper.setAttribute('data-task-uuid', task.uuid);
+    //Add className to wrapper that represents priority level.
+    const priority_className = "priority-" + task.priority;
+    taskWrapper.classList.add(priority_className);
 
     const complete_btn = makeCompletedBtn(task);
     taskWrapper.append(complete_btn);
