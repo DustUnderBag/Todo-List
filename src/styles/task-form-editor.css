@@ -77,7 +77,8 @@ form.task-editor {
 }
 
 
-select#task-priority {
+select#task-priority,
+select#task-priority-edit {
     color: var(--priority-bg-clr);
 
     &:has(option:checked[value="0"]) {
@@ -97,7 +98,8 @@ select#task-priority {
     }
 }
 
-select#task-priority > option {
+select#task-priority > option,
+select#task-priority-edit > option {
     color: var(--priority-bg-clr);
 
     &[value="0"] {

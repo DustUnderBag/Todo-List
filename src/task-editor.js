@@ -26,10 +26,10 @@ const cache_editorInputs = () => {
 }
 
 const priorities = [
-    {name: "None",   value: 0},
-    {name: "Low",    value: 1},
-    {name: "Medium", value: 2},
-    {name: "High",   value: 3},
+    {name: "No Priority",   value: 0},
+    {name: "Priority Low",    value: 1},
+    {name: "Priority Medium", value: 2},
+    {name: "Priority High",   value: 3},
 ];
 
 function projectsToArray() {
