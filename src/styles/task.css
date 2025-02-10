@@ -15,6 +15,7 @@
 }
 
 body {
+    min-width: 375px;
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-areas: "sidebar-panel project-panel";
@@ -184,7 +185,6 @@ button.task-edit {
 @media only screen and (max-width: 800px) {
      body nav.sidebar-panel {
         width: 250px;
-
         padding-top: 4rem;
     }
 
@@ -200,12 +200,13 @@ button.task-edit {
     }
 
     main.project-panel {
+        margin-left: 250px;
         padding-inline: 40px;
     }
 }
 
 @media only screen and (max-width: 700px) {
-    nav.sidebar-panel {
+    body nav.sidebar-panel {
         width: 200px;
     }
 
@@ -213,6 +214,15 @@ button.task-edit {
         & h1 {
             font-size: 1.4rem;
         }
+    }
+
+    main.project-panel {
+        margin-left: 200px;
+        padding-inline: 30px;
+    }
+
+    .project-panel .title-row > h1 {
+        font-size: 1.5rem;
     }
 }
 

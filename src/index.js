@@ -88,13 +88,13 @@ function toggleSidebar() {
     let sidebarFullWidth = (screen.width >= 800) ? "300px"
                            :(screen.width >= 700 && screen.width < 800) ? "250px"
                            :(screen.width >= 555 && screen < 700) ? "200px"
-                           : "320px";
+                           : "300px";
 
     //Collapse sidebar if one of its direct children has opacity:0;
     if(sidebarChild_opacity > 0) {
         //Collapsing
         sidebar.style.width = "0";
-        sidebar.style.left = "-300px";
+        sidebar.style.left = "-" + sidebarFullWidth;
         sidebar.style.position = "absolute";
         projectPanel.style.marginLeft = "0";
         //Set opacity of sidebar's direct children one by one
@@ -106,7 +106,7 @@ function toggleSidebar() {
         sidebar.style.width = sidebarFullWidth;
         sidebar.style.left = "0";
         sidebar.style.position = "fixed";
-        projectPanel.style.marginLeft = "300px";
+        projectPanel.style.marginLeft = sidebarFullWidth;
         //Set opacity of sidebar's direct children one by one
         sidebar_directChildren.forEach(childNode => {
             childNode.style.opacity = "1";
