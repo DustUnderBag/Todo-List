@@ -227,6 +227,7 @@ button.task-edit {
         width: 0px;
         left: -300px;
         position: absolute;
+        z-index: 1;
 
         & > * {
             opacity: 0;
