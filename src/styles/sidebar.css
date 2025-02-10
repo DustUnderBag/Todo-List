@@ -301,3 +301,37 @@ button.cancel-project {
     background-position: center;
     background-size: contain;
 }
+
+button#reset-todos {
+    appearance: none;
+    border: 1px solid var(--grey-font-clr);
+    padding: 4px 6px;
+    background: none;
+    outline: none;
+    color: var(--font-clr);
+    
+
+    position: absolute;
+    bottom: 50px;
+
+    &:hover {
+        color: var(--highlight-font-clr);
+        border: 1px solid var(--highlight-font-clr);
+    }
+}
+
+p.author {
+    position: absolute;
+    bottom: 26px;
+    left: 25px;
+
+    & a {
+        border: none;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    & a:visited {
+        color: var(--highlight-bg-clr);
+    }
+    
+}

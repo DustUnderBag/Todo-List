@@ -9,14 +9,21 @@ import { makeTaskForm } from "./task-form.js";
 import { populateProjects } from "./reset-projects.js";
 import { makeListFromProjects, highlightProjectSelector } from "./project-selector.js";
 import { displayFilterTaskCounts } from "./filter-selector.js";
+import { storageIsEmpty } from "./storage";
 
 console.log("Script entry point working");
-populateProjects();
 
-makeListFromProjects();
-highlightProjectSelector(getCurrentProjectTitle());
-updateContentPanel();
-displayFilterTaskCounts();
+if(storageIsEmpty()) populateProjects();
+
+initializeAppContents();
+
+function initializeAppContents() {
+    setCurrentProjectTitle("All Tasks");
+    makeListFromProjects();
+    highlightProjectSelector(getCurrentProjectTitle());
+    updateContentPanel();
+    displayFilterTaskCounts();
+}
 
 const showProjectInput_btn = document.querySelector('button#show-project-input');
 const projectTitle_input = document.querySelector('input#project-title');
@@ -72,6 +79,7 @@ sidebar_toggles.forEach( toggle => {
 
 function toggleSidebar() {
     const sidebar = document.querySelector('nav.sidebar-panel');
+    const projectPanel = document.querySelector('main.project-panel');
     //sidebar.classList.toggle('collapsed');
     const sidebar_directChildren = document.querySelectorAll(".sidebar-panel > *");
     const sidebarChild_style = window.getComputedStyle(sidebar_directChildren[0]);
@@ -84,17 +92,21 @@ function toggleSidebar() {
 
     //Collapse sidebar if one of its direct children has opacity:0;
     if(sidebarChild_opacity > 0) {
+        //Collapsing
         sidebar.style.width = "0";
         sidebar.style.left = "-300px";
         sidebar.style.position = "absolute";
+        projectPanel.style.marginLeft = "0";
         //Set opacity of sidebar's direct children one by one
         sidebar_directChildren.forEach(childNode => {
             childNode.style.opacity = "0";
         });
     }else {
+        //Expanding
         sidebar.style.width = sidebarFullWidth;
         sidebar.style.left = "0";
-        sidebar.style.position = "relative";
+        sidebar.style.position = "fixed";
+        projectPanel.style.marginLeft = "300px";
         //Set opacity of sidebar's direct children one by one
         sidebar_directChildren.forEach(childNode => {
             childNode.style.opacity = "1";
@@ -105,4 +117,12 @@ function toggleSidebar() {
         const secondary_toggle = document.querySelector('main button.sidebar-toggle');
         secondary_toggle.classList.toggle('hidden');
     }
+}
+
+const resetTodos_btn = document.querySelector('button#reset-todos');
+resetTodos_btn.addEventListener('click', resetTodos);
+
+function resetTodos() {
+    populateProjects();
+    initializeAppContents();
 }
