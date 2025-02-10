@@ -79,7 +79,7 @@ function toggleSidebar() {
 
     let sidebarFullWidth = (screen.width >= 800) ? "300px"
                            :(screen.width >= 700 && screen.width < 800) ? "250px"
-                           :(screen.width >= 500 && screen < 700) ? "200px"
+                           :(screen.width >= 555 && screen < 700) ? "200px"
                            : "320px";
 
     //Collapse sidebar if one of its direct children has opacity:0;

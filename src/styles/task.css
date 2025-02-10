@@ -222,7 +222,7 @@ button.task-edit {
     }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 555px) {
     nav.sidebar-panel {
         width: 0px;
         left: -300px;

@@ -34,12 +34,12 @@ dialog.task-form-modal {
 
 form.task-form {
     width: var(--task-width);
+    margin-top: 120px;
 }
 
 form.task-form,
 form.task-editor {
     margin-inline: auto;
-    margin-top: 120px;
     padding: 1.3rem 1.1rem;
 
     color: var(--font-clr);
@@ -62,6 +62,7 @@ form.task-editor {
     &:user-invalid {
         border: 1px solid #983a3a;
     }
+    width: 100%;
 }
 
 input:-webkit-autofill,
@@ -217,6 +218,18 @@ input#task-title-edit {
     form.task-form {
         --task-width: 400px;
     }
+
+    form.task-editor select,
+    form.task-editor input[type="date"] {
+        font-size: 0.9rem;
+        padding-top: 4px;
+        width: 140px;
+    }
+
+    form.task-editor button {
+        width: 60px;
+        font-size: 0.9rem;
+    }
 }
 
 @media only screen and (max-width: 430px) {
@@ -230,10 +243,27 @@ input#task-title-edit {
     }
 
     form.task-form .multi-inputs,
-    .task-form > .form-row:last-of-type {
+    .task-form > .form-row:last-of-type,
+    form.task-editor .multi-inputs {
         justify-content: space-between;
         & > select {
             margin: 0;
+        }
+    }
+
+    form.task-editor .multi-inputs {
+        flex-direction: column;
+        gap: 12px;
+
+        & > select,
+        & > input[type="date"] {
+            width: 100%;
+        }
+    }
+
+    .task-editor > .form-row:last-of-type {
+        & > select {
+            width: 100px;
         }
     }
 
