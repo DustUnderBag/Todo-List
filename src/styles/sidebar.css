@@ -305,12 +305,12 @@ button.cancel-project {
 button#reset-todos {
     appearance: none;
     border: 1px solid var(--grey-font-clr);
+    width: 175px;
     padding: 4px 6px;
     background: none;
     outline: none;
     color: var(--font-clr);
     
-
     position: absolute;
     bottom: 50px;
 
