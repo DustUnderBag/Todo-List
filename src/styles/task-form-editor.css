@@ -59,12 +59,17 @@ form.task-editor {
 .task-form input[type="text"],
 .task-editor input[type="text"] {
     background-color: var(--sidebar-clr);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: var(--font-clr);
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px var(--sidebar-clr);
     &:user-invalid {
         border: 1px solid #983a3a;
     }
     width: 100%;
 }
 
+/*
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
@@ -74,6 +79,7 @@ input:-webkit-autofill:active{
     transition: background-color 5000s ease-in-out 0s;
     box-shadow: inset 0 0 20px 20px var(--sidebar-clr);
 }
+*/
 
 .task-form input,
 .task-form select,
