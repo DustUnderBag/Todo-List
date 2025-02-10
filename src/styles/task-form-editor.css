@@ -58,8 +58,6 @@ form.task-editor {
 
 .task-form input[type="text"],
 .task-editor input[type="text"] {
-    background: none;
-
     &:user-invalid {
         border: 1px solid #983a3a;
     }
@@ -87,6 +85,7 @@ input:autofill:active{
     box-shadow: inset 0 0 20px 20px var(--sidebar-clr);
 }
 */
+
 .task-form input,
 .task-form select,
 .task-form option,
@@ -98,12 +97,6 @@ input:autofill:active{
     color: #ededed;
     border-radius: 4px;
 }
-
-.task-form #task-description,
-.task-editor #task-description-edit {
-    color: var(--grey-font-clr);
-}
-
 
 select#task-priority,
 select#task-priority-edit {
@@ -166,8 +159,15 @@ select#task-priority-edit > option {
 
 input#task-title,
 input#task-title-edit {
+    background: none;
     font-weight: 900;
     font-size: var(--title-font-size);
+}
+
+.task-form #task-description,
+.task-editor #task-description-edit {
+    background: none;
+    color: var(--grey-font-clr);
 }
 
 .task-form > .form-row:last-of-type,
