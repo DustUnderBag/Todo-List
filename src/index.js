@@ -68,7 +68,27 @@ sidebar_toggles.forEach( toggle => {
 
 function toggleSidebar() {
     const sidebar = document.querySelector('nav.sidebar-panel');
-    sidebar.classList.toggle('collapsed');
+    //sidebar.classList.toggle('collapsed');
+    
+    const sidebar_directChildren = document.querySelectorAll(".sidebar-panel > *");
+    const sidebar_style = window.getComputedStyle(sidebar);
+    const sidebar_width = Number(sidebar_style.width.replace('px', ''));
+    //Collapse sidebar if width > 0
+    if(sidebar_width > 100) {
+        sidebar.style.width = "0";
+        sidebar.style.left = "-300px";
+
+        sidebar_directChildren.forEach(childNode => {
+            childNode.style.opacity = "0";
+        });
+    }else {
+        sidebar.style.width = "300px";
+        sidebar.style.left = "0";
+        
+        sidebar_directChildren.forEach(childNode => {
+            childNode.style.opacity = "1";
+        });
+    }
 
     const secondary_toggle = document.querySelector('main button.sidebar-toggle');
     secondary_toggle.classList.toggle('hidden');

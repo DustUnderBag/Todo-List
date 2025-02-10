@@ -16,6 +16,7 @@
 
 body {
     height: 100vh;
+    
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-areas: "sidebar-panel project-panel";
@@ -33,6 +34,7 @@ nav.sidebar-panel {
     background-color: var(--sidebar-clr);
 
     width: 300px;
+    height: 100%;
     left: 0;
     position: relative;
 
@@ -40,6 +42,7 @@ nav.sidebar-panel {
                 left 0.5s ease-in;
 
     > * {
+        opacity: 1;
         transition: opacity 0.2s;
     }
 }
@@ -55,10 +58,10 @@ nav.sidebar-panel.collapsed {
 
 main.project-panel {
     grid-area: project-panel;
-
+    height: 100%;
     background-color: var(--project-clr);
 
-    padding: 4rem 2.4rem;
+    padding: 4rem 100px;
 
     display: flex;
     flex-direction: column;

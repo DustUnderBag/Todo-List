@@ -21,7 +21,7 @@ nav.sidebar-panel {
     padding: 24px 16px;
 }
 
-nav.sidebar-panel > div.first-row {
+.sidebar-panel > .first-row {
     display: flex;
     justify-content: space-between;
 
@@ -238,7 +238,7 @@ button#show-project-input {
     background: none;
     color: var(--font-clr);
 
-    width: 52%;
+    width: 140px;
     text-align: center;
     padding: 0;
     margin-left: 6px;
