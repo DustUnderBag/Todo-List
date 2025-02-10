@@ -69,22 +69,24 @@ sidebar_toggles.forEach( toggle => {
 function toggleSidebar() {
     const sidebar = document.querySelector('nav.sidebar-panel');
     //sidebar.classList.toggle('collapsed');
-    
     const sidebar_directChildren = document.querySelectorAll(".sidebar-panel > *");
-    const sidebar_style = window.getComputedStyle(sidebar);
-    const sidebar_width = Number(sidebar_style.width.replace('px', ''));
-    //Collapse sidebar if width > 0
-    if(sidebar_width > 100) {
+    const sidebarChild_style = window.getComputedStyle(sidebar_directChildren[0]);
+    const sidebarChild_opacity = Number(sidebarChild_style.opacity);
+
+    //Collapse sidebar if one of its direct children has opacity:0;
+    if(sidebarChild_opacity > 0) {
         sidebar.style.width = "0";
         sidebar.style.left = "-300px";
-
+        sidebar.style.position = "absolute";
+        //Set opacity of sidebar's direct children one by one
         sidebar_directChildren.forEach(childNode => {
             childNode.style.opacity = "0";
         });
     }else {
         sidebar.style.width = "300px";
         sidebar.style.left = "0";
-        
+        sidebar.style.position = "relative";
+        //Set opacity of sidebar's direct children one by one
         sidebar_directChildren.forEach(childNode => {
             childNode.style.opacity = "1";
         });
