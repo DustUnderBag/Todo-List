@@ -58,11 +58,8 @@ form.task-editor {
 
 .task-form input[type="text"],
 .task-editor input[type="text"] {
-    background-color: var(--sidebar-clr);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: var(--font-clr);
-    transition: background-color 5000s ease-in-out 0s;
-    box-shadow: inset 0 0 20px 20px var(--sidebar-clr);
+    background: none;
+
     &:user-invalid {
         border: 1px solid #983a3a;
     }
@@ -79,8 +76,17 @@ input:-webkit-autofill:active{
     transition: background-color 5000s ease-in-out 0s;
     box-shadow: inset 0 0 20px 20px var(--sidebar-clr);
 }
-*/
 
+input:autofill,
+input:autofill:hover, 
+input:autofill:focus, 
+input:autofill:active{
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: var(--font-clr);
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px var(--sidebar-clr);
+}
+*/
 .task-form input,
 .task-form select,
 .task-form option,
