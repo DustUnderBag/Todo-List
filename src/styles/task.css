@@ -174,3 +174,62 @@ button.task-edit {
     background-size: contain;
     background-repeat: no-repeat;
 }
+
+
+@media only screen and (max-width: 800px) {
+     body nav.sidebar-panel {
+        width: 250px;
+
+        padding-top: 4rem;
+    }
+
+    .sidebar-panel > div.first-row {
+        align-items: start;
+        & > h1 {
+            font-size: 1.6rem;
+        }
+
+        & button.sidebar-toggle {
+            width: 35px;
+        }
+    }
+
+    main.project-panel {
+        padding-inline: 40px;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    nav.sidebar-panel {
+        width: 200px;
+    }
+
+    .sidebar-panel > div.first-row {
+        & h1 {
+            font-size: 1.4rem;
+        }
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    nav.sidebar-panel {
+        width: 0px;
+        left: -300px;
+        position: absolute;
+
+        & > * {
+            opacity: 0;
+            width: 100%;
+        }
+    }
+
+    .sidebar-panel > div.first-row {
+        & h1 {
+            font-size: 1.4rem;
+        }
+    }
+
+    main div.first-row button.sidebar-toggle.hidden {
+        display: block;
+    }
+}

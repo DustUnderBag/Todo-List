@@ -73,6 +73,11 @@ function toggleSidebar() {
     const sidebarChild_style = window.getComputedStyle(sidebar_directChildren[0]);
     const sidebarChild_opacity = Number(sidebarChild_style.opacity);
 
+    let sidebarFullWidth = (screen.width >= 800) ? "300px"
+                           :(screen.width >= 700 && screen.width < 800) ? "250px"
+                           :(screen.width >= 500 && screen < 700) ? "200px"
+                           : "320px";
+
     //Collapse sidebar if one of its direct children has opacity:0;
     if(sidebarChild_opacity > 0) {
         sidebar.style.width = "0";
@@ -83,7 +88,7 @@ function toggleSidebar() {
             childNode.style.opacity = "0";
         });
     }else {
-        sidebar.style.width = "300px";
+        sidebar.style.width = sidebarFullWidth;
         sidebar.style.left = "0";
         sidebar.style.position = "relative";
         //Set opacity of sidebar's direct children one by one
@@ -92,6 +97,8 @@ function toggleSidebar() {
         });
     }
 
-    const secondary_toggle = document.querySelector('main button.sidebar-toggle');
-    secondary_toggle.classList.toggle('hidden');
+    if(screen.width >= 500) {
+        const secondary_toggle = document.querySelector('main button.sidebar-toggle');
+        secondary_toggle.classList.toggle('hidden');
+    }
 }
