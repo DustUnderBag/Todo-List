@@ -55,10 +55,12 @@ function closeProjectInput() {
     cancelProject_btn.style.display = "none";
 }
 
-const showTaskForm_btn = document.querySelector('button.show-task-form');
-showTaskForm_btn.addEventListener('click', () => {
-    makeTaskForm();
-    updateContentPanel();
+const showTaskForm_btns = document.querySelectorAll('button.show-task-form');
+showTaskForm_btns.forEach( button => {
+    button.addEventListener('click', () => {
+        makeTaskForm();
+        updateContentPanel();
+    });
 });
 
 const sidebar_toggles = document.querySelectorAll('button.sidebar-toggle');

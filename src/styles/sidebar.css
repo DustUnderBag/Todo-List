@@ -204,10 +204,10 @@ button.show-task-form {
     }
 }
 
-button.show-task-form::before {
+.show-task-form::before {
     content: "";
     width: 1.8rem;
-    height: 1.8rem;
+    aspect-ratio: 1/1;
     background-image: url(../images/add-task.svg);
     background-size: contain;
     background-repeat: no-repeat;

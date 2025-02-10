@@ -71,6 +71,16 @@ main.project-panel {
         width: min(100%, var(--task-width));
         min-width: 210px;
     }
+
+}
+
+.project-panel .title-row {
+    display: flex;
+    justify-content: space-between;
+
+    & > button.show-task-form {
+        width: auto;
+    }
 }
 
 /*Task Wrapper*/
@@ -143,6 +153,7 @@ button.task-complete {
     }
 }
 
+/*Priority options*/
 .task-wrapper.priority-1 > button.task-complete {
     --priority-brdr-clr: #5189d1;
     --priority-3-bg-clr: #4cb8e33f;
@@ -231,5 +242,14 @@ button.task-edit {
 
     main div.first-row button.sidebar-toggle.hidden {
         display: block;
+    }
+
+    .project-panel .title-row > button.show-task-form {
+        font-size: 1.1rem;
+        line-height: 1.2;
+        
+        &::before {
+            width: 1.6rem;
+        }
     }
 }
