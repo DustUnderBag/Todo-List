@@ -26,7 +26,9 @@ const cancelProject_btn = document.querySelector('button.cancel-project');
 showProjectInput_btn.addEventListener('click', showProjectInput);
 cancelProject_btn.addEventListener('click', closeProjectInput);
 
-addProject_btn.addEventListener('click', e => {    
+addProject_btn.addEventListener('click', addProject_handler);
+
+function addProject_handler() {
     Project.addProject(new Project(projectTitle_input.value) );
     projectTitle_input.value = "";
     closeProjectInput();
@@ -36,7 +38,7 @@ addProject_btn.addEventListener('click', e => {
 
     setCurrentProjectTitle(projectTitle_input.value);
     updateContentPanel();
-});
+}
 
 function showProjectInput() {
     showProjectInput_btn.style.display = "none";
@@ -56,12 +58,12 @@ function closeProjectInput() {
 }
 
 const showTaskForm_btns = document.querySelectorAll('button.show-task-form');
-showTaskForm_btns.forEach( button => {
-    button.addEventListener('click', () => {
-        makeTaskForm();
-        updateContentPanel();
-    });
-});
+showTaskForm_btns.forEach( button => button.addEventListener('click', showTaskForm_handler) );
+
+function showTaskForm_handler() {
+    makeTaskForm();
+    updateContentPanel();
+}
 
 const sidebar_toggles = document.querySelectorAll('button.sidebar-toggle');
 sidebar_toggles.forEach( toggle => {
