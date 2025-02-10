@@ -54,7 +54,7 @@ nav.sidebar-panel > h2 {
 }
 
 .sidebar-panel ul {
-    margin-top: 0.5rem;
+    margin-top: 0.3rem;
     list-style: none;
     padding: 0;
 }
@@ -215,7 +215,7 @@ button.show-task-form {
 
 /*Add project field*/
 .add-project-form {
-    margin-top: 0.5rem;
+    margin-top: 0.3rem;
     width: 100%;
     height: 2rem;
 }
@@ -238,9 +238,9 @@ button#show-project-input {
     background: none;
     color: var(--font-clr);
 
-    width: 140px;
-    text-align: center;
-    padding: 0;
+    font-size: 1.1rem;
+    text-align: left;
+    padding: 0 2px;
     margin-left: 6px;
     
     &:hover {
@@ -256,7 +256,7 @@ button#show-project-input {
         font-size: 1.8rem;
         font-weight: bold;
         color: rgb(86, 156, 86);
-        line-height: 1;
+        line-height: 1.1;
     }
 }
 

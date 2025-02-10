@@ -61,9 +61,6 @@ export function generateTaskItem(task) {
     const complete_btn = makeCompletedBtn(task);
     taskWrapper.append(complete_btn);
 
-    const edit_btn = makeEditBtn(task);
-    taskWrapper.append(edit_btn);
-
     const infoWrapper = document.createElement('div');
     infoWrapper.classList.add('info-wrapper');
 
@@ -83,6 +80,9 @@ export function generateTaskItem(task) {
     infoWrapper.append(dueDate);
 
     taskWrapper.append(infoWrapper);
+
+    const edit_btn = makeEditBtn(task);
+    taskWrapper.append(edit_btn);
 
     return taskWrapper;
 }

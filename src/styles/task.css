@@ -53,7 +53,7 @@ main.project-panel {
     background-color: var(--project-clr);
 
     margin-left: 300px;
-    padding: 4rem 50px;
+    padding: 2.4rem 50px;
 
     display: flex;
     flex-direction: column;
@@ -84,12 +84,10 @@ main.project-panel {
     padding-bottom: 0.5rem;
 
     display: grid;
-    grid-template-columns: 1rem 1fr 1rem;
-    grid-template-areas: "complete-button info-wrapper edit-button";
+    grid-template-columns: 1rem 1fr 1.2rem;
 }
 
 .task-wrapper > .info-wrapper {
-    grid-area: info-wrapper;
     margin-left: 1rem;
 }
 
@@ -114,12 +112,10 @@ span.task-dueDate {
 
 /*Task complete button*/
 button.task-complete {
-    grid-area: complete-button;
     appearance: none;
     outline: none;
     border: none;
 
-    width: 1rem;
     aspect-ratio: 1/1;
     border-radius: 50%;
     border: 2.4px solid var(--priority-brdr-clr);
@@ -166,13 +162,10 @@ button.task-complete {
 
 /*Task Editor button*/
 button.task-edit {
-    grid-area: edit-button;
-
     appearance: none;
     outline: none;
     border: none;
     
-    width: 1rem;
     aspect-ratio: 1/1;
 
     background: url(../images/edit.svg);
@@ -185,7 +178,7 @@ button.task-edit {
 @media only screen and (max-width: 800px) {
      body nav.sidebar-panel {
         width: 250px;
-        padding-top: 4rem;
+        padding-top: 2.4rem;
     }
 
     .sidebar-panel > div.first-row {
