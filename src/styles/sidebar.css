@@ -19,6 +19,7 @@ button {
 
 nav.sidebar-panel {
     padding: 24px 16px;
+    overflow: hidden;
 }
 
 .sidebar-panel > .first-row {
@@ -107,6 +108,15 @@ button.task-filter {
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
+    }
+
+    & > span {
+        /*Overflow*/
+        display: block;
+        overflow-x: scroll;
+        text-overflow: ellipsis;
+        scrollbar-width: none;
+        width: 150px;
     }
 }
 
@@ -225,6 +235,15 @@ button.show-task-form {
     grid-template-columns: 215px 26px 32px;
     align-items: center;
     justify-content: space-between;
+}
+
+ul.project-window {
+    max-height: 40%;
+    overflow-y: scroll;
+
+    /*Hide scrollbar*/
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.139) transparent;
 }
 
 input#project-title,

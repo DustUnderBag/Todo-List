@@ -31,9 +31,9 @@ nav.sidebar-panel {
     grid-area: sidebar-panel;
 
     background-color: var(--sidebar-clr);
-
+    overflow: hidden;
     width: 300px;
-    height: 100lvh;
+    height: 100vh;
     left: 0;
     position: fixed;
     z-index: 1;

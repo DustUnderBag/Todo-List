@@ -12,7 +12,11 @@ export function makeListFromProjects() {
 
         const btn = document.createElement('button');
         btn.classList.add("project");
-        btn.textContent = project;
+
+        const span = document.createElement('span');
+        span.textContent = project;
+        btn.appendChild(span);
+        //btn.textContent = project;
         btn.setAttribute('id', project);
         btn.setAttribute('type', 'button');
         
