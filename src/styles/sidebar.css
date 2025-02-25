@@ -349,8 +349,11 @@ p.author {
         text-decoration: none;
         cursor: pointer;
     }
-    & a:visited {
-        color: var(--highlight-bg-clr);
+    & a:link,
+    & a:visited,
+    & a:hover,
+    & a:active {
+        color: #ef8b8b;
     }
     
 }
